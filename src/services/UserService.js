@@ -1,3 +1,4 @@
-import httpApi from "./ApiService"
+import createHttp from "./BaseService";
 
-export const register = (data) => httpApi.post('/garages', data)
+const http = createHttp(true)
+

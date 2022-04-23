@@ -9,7 +9,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error })
           className={`form-control ${error ? 'is-invalid' : ''}`}
           id={id}
           placeholder={placeholder}
-          {...register(id)}
+          {...register(name)}
         />
         <p className="invalid-feedback">{error}</p>
       </div>
