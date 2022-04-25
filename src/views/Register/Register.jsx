@@ -10,18 +10,18 @@ import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
     bussinesName: yup.string().required(),
-    cif: yup.string().matches(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/).required(),
+    cif: yup.string().matches(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/,'Invalid CIF form').required(),
     email: yup.string().email().required(),
     password: yup.string().min(8).required(),
     address: yup.object({
         street: yup.string().required(),
         state: yup.string().required(),
         city: yup.string().required(),
-        zipCode: yup.string().matches(/^\d{5}(?:[- ]?\d{4})?$/).required(),
+        zipCode: yup.string().matches(/^\d{5}(?:[- ]?\d{4})?$/,'Invalid zipcode form').required(),
         country: yup.string().required()
     }).required(),
-    phoneNumber: yup.string().matches(/^\+?(6\d{2}|7[1-9]\d{1})\d{6}$/).required(),
-    fax: yup.string().matches(/^(\+)?(((((\d+)|(\(\d+\))|(\(\d+\s(\d)\)))(\s|-|\d+))+)|((\d+)|(\(\d+\))$)+)+\d$/),
+    phoneNumber: yup.string().matches(/^\+?([6-9]\d{2}|7[1-9]\d{1})\d{6}$/,'Invalid phone form').required(),
+    fax: yup.string().min(9),
     contactName: yup.string()
 }).required()
 
@@ -33,6 +33,8 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
+
+
     const onSubmit = data => {
         setBackErrors({})
         setIsSubmitting(true)
@@ -121,7 +123,7 @@ const Register = () => {
                     error={backErrors?.address?.country || errors.address?.country?.message}
                 />
                 <InputComponent
-                    label="Phone number"
+                    label="Phone Number"
                     id="phoneNumber"
                     register={register}
                     error={backErrors?.phoneNumber || errors.phoneNumber?.message}
