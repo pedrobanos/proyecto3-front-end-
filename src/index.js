@@ -5,14 +5,17 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import './assets/stylesheets/custom.scss';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthContextProvider } from './contexts/AuthContext';
 
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-<BrowserRouter>
-  <App/>
-</BrowserRouter>
+  <BrowserRouter>
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
+  </BrowserRouter>
 );
 
 
