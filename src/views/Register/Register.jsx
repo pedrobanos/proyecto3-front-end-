@@ -9,19 +9,19 @@ import { useNavigate } from 'react-router-dom';
 
 
 const schema = yup.object({
-    bussinesName: yup.string().required(),
-    cif: yup.string().matches(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/,'Invalid CIF form').required(),
-    email: yup.string().email().required(),
-    password: yup.string().min(8).required(),
+    bussinesName: yup.string().required('Please enter your company name'),
+    cif: yup.string().required('Cif is a required field').matches(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/,'Invalid cif form'),
+    email: yup.string().email().required('Email is a required field'),
+    password: yup.string().required('Password is a required field').min(8),
     address: yup.object({
-        street: yup.string().required(),
-        state: yup.string().required(),
-        city: yup.string().required(),
-        zipCode: yup.string().matches(/^\d{5}(?:[- ]?\d{4})?$/,'Invalid zipcode form').required(),
-        country: yup.string().required()
+        street: yup.string().required('Street is a required field'),
+        state: yup.string().required('State is a required field'),
+        city: yup.string().required('City is a required field'),
+        zipCode: yup.string().required('Zip code is a required field').matches(/^\d{5}(?:[- ]?\d{4})?$/,'Invalid zipcode form'),
+        country: yup.string().required('Country is a required field')
     }).required(),
-    phoneNumber: yup.string().matches(/^\+?([6-9]\d{2}|7[1-9]\d{1})\d{6}$/,'Invalid phone form').required(),
-    fax: yup.string().min(9),
+    phoneNumber: yup.string().required('Phone number is a required field').matches(/^\+?([6-9]\d{2}|7[1-9]\d{1})\d{6}$/,'Invalid phone form'),
+    fax: yup.string(),
     contactName: yup.string()
 }).required()
 
@@ -144,8 +144,8 @@ const Register = () => {
                     name="contactName"
                 />
 
+                <button className={`btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating company...' : 'Submit'}</button>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
     )
