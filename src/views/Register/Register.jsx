@@ -33,6 +33,8 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
+
+
     const onSubmit = data => {
         setBackErrors({})
         setIsSubmitting(true)
@@ -121,7 +123,7 @@ const Register = () => {
                     error={backErrors?.address?.country || errors.address?.country?.message}
                 />
                 <InputComponent
-                    label="Phone number"
+                    label="Phone Number"
                     id="phoneNumber"
                     register={register}
                     error={backErrors?.phoneNumber || errors.phoneNumber?.message}
