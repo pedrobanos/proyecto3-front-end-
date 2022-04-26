@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
     bussinesName: yup.string().required('Please enter your company name'),
-    cif: yup.string().required('Cif is a required field').matches(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/,'Invalid cif form'),
+    cif: yup.string().required('Cif is a required field').matches(/^([ABCDEFGHJKLMNPQRSUVWabcdefghjklmnpqrsuvw])(\d{7})([0-9A-J])$/,'Invalid cif form'),
     email: yup.string().email().required('Email is a required field'),
     password: yup.string().required('Password is a required field').min(8),
     address: yup.object({

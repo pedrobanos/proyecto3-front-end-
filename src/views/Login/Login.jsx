@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './Login.css'
 
 const schema = yup.object({
     cif: yup.string().required('Cif is a required field').matches(/^([ABCDEFGHJKLMNPQRSUVWabcefghjklmnpqrsuvw])(\d{7})([0-9A-J])$/, 'Invalid cif form'),
@@ -44,25 +45,37 @@ const Login = () => {
         <div className="container">
             <h1>Login</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <InputComponent
-                    label="CIF"
-                    id="cif"
-                    register={register}
-                    error={error || errors.cif?.message}
-                    type="cif"
-                    name="cif"
-                />
-                <InputComponent
-                    label="Password"
-                    id="password"
-                    register={register}
-                    error={error || errors.password?.message}
-
-                    type="password"
-                    name="password"
-                />
-
-                <button className={`btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Please wait...' : 'Submit'}</button>
+                <div className="row justify-content-center my-5">
+                    <div className="col-6 col-sm-8 col-md-8 col-lg-10">
+                        <div className='text-center mb-4'>
+                            <img className="logoLogin" src='http://assets.stickpng.com/images/585e4beacb11b227491c3399.png' />
+                        </div>
+                        <div>
+                            <InputComponent classname="input-group mb-2 mt-4"
+                                label="CIF"
+                                id="cif"
+                                register={register}
+                                error={error || errors.cif?.message}
+                                placeholder="Enter your cif"
+                                type="cif"
+                                name="cif"
+                            />
+                        </div>
+                        <div>
+                            <InputComponent className="input-group mb-2"
+                                label="Password"
+                                id="password"
+                                register={register}
+                                error={error || errors.password?.message}
+                                placeholder="Password"
+                                type="password"
+                                name="password"
+                            />
+                        </div>
+                        <h6 className='fs-6 mb-4'>Aqui va el enlace al register</h6>
+                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Please wait...' : 'Submit'}</button>
+                    </div >
+                </div >
             </form>
         </div>
     )
