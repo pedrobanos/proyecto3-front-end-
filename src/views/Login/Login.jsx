@@ -16,8 +16,7 @@ const schema = yup.object({
 const Login = () => {
     const navigate = useNavigate()
     let location = useLocation();
-
-    let from = location.state?.from?.pathname || "/register";
+    let from = location.state?.from?.pathname || "/profile";
 
     const { login } = useAuthContext()
     const [error, setError] = useState();
@@ -33,8 +32,6 @@ const Login = () => {
 
         loginRequest(data)
             .then(response => {
-                console.log(response);
-                console.log(login)
                 login(response.access_token, () => navigate(from, { replace: true }))
             })
             .catch(err => {
@@ -46,7 +43,6 @@ const Login = () => {
     return (
         <div className="container">
             <h1>Login</h1>
-            <h2>OHH UN PITO 🍆</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputComponent
                     label="CIF"
