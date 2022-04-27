@@ -22,16 +22,17 @@ const Vehicles = () => {
   
 
     // useEffect(() => {
-    //     if (makes) {
-    //             getModels(makes.makes)
+    //     if (makes.makes_id) {
+    //             getModels()
     //                 .then(res => console.log('res', res))
+    //                 setModels()
     //     }
-    // }, [makes.makes])
+    // }, [makes.makes_id])
 
 
 
     const getMakeOptions = (makes) => {
-        let options = makes.makes.map(make => {
+        let options = makes.makes?.map(make => {
             return {
                 value: make.make_id,
                 label: make.make_display.charAt(0).toUpperCase()+ make.make_display.slice(1)
