@@ -6,10 +6,11 @@ import Register from "./views/Register/Register";
 import Vehicles from "./views/Vehicles/Vehicles";
 
 
+
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      {/* <Navbar/> */}
       <Routes>
         <Route path="/" element={<Login/>}></Route>
         <Route path="/register" element={<Register/>}></Route>

@@ -1,4 +1,5 @@
-.logoLogin{
-    height: 80px;
-    width: 80px;
+.Login{
+    background-color: rgb(236, 218, 57);
+    height: 100vh;
+    width: 100vw;
 }
