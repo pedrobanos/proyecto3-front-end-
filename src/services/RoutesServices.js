@@ -1,6 +1,6 @@
 import carHttp from "./CarBrandService";
 
 
-export const getMarks = () => carHttp.get('/manufacturers')
+export const getMakes = () => carHttp.get(`?callback=&cmd=getMakes`)
 
-export const getModels = (id) => carHttp.get(`/cars/`)
+export const getModels = (make_id) => carHttp.get(`?callback=&cmd=getMakes&make=${make_id}`)

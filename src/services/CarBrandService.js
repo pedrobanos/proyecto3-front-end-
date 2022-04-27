@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const carHttp = axios.create({
-    baseURL: 'https://private-anon-92bdb9b584-carsapi1.apiary-mock.com'
+    baseURL: 'https://www.carqueryapi.com/api/0.3'
 })
 
 carHttp.interceptors.response.use((response) => response.data);
@@ -9,3 +9,4 @@ carHttp.interceptors.response.use((response) => response.data);
 
 
 export default carHttp
+

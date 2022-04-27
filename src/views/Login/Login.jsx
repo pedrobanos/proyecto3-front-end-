@@ -5,7 +5,7 @@ import InputComponent from '../../components/ImputComponent';
 import { useState } from 'react';
 import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 
 const schema = yup.object({
@@ -43,7 +43,6 @@ const Login = () => {
 
     return (
         <div className="container">
-            <h1>Login</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row justify-content-center my-5">
                     <div className="col-6 col-sm-8 col-md-8 col-lg-10">
@@ -72,8 +71,10 @@ const Login = () => {
                                 name="password"
                             />
                         </div>
-                        <h6 className='fs-6 mb-4'>Aqui va el enlace al register</h6>
-                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Please wait...' : 'Submit'}</button>
+                        <div className='col-6 col-sm-8 col-md-8 col-lg-10 justify-content-center'>
+                        <button className={`mt-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Please wait...' : 'Submit'}</button>
+                        <Link className= 'btn btn-warning mt-3 text-start' to={'/register'}>Don't you have account yet?</Link>
+                        </div>
                     </div >
                 </div >
             </form>

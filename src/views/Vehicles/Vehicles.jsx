@@ -1,69 +1,76 @@
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { getMarks, getModels } from "../../services/RoutesServices"
+import { getMakes, getModels } from "../../services/RoutesServices"
 import React, { Component } from 'react'
 import Select from 'react-select'
 
 const Vehicles = () => {
 
-    const [marks, setMarks] = useState([])
-    const [mark, setMark] = useState(null)
+    const [makes, setMakes] = useState([])
     const [models, setModels] = useState(null)
-
     const selectRef = useRef(null)
+    
 
     
     useEffect(() => {
-        getMarks()
+        getMakes()
             .then(response => {
-                console.log(response);
-                setMarks(response)
-            })
+                const responseWithoutBraquets = response.substring(1, response.length - 2).toLowerCase()
+                setMakes(JSON.parse(responseWithoutBraquets))
+             })
     }, [])
+  
 
-    useEffect(() => {
-        if (mark) {
-                getModels(mark)
-                    .then(res => console.log('res', res))
-        }
-    }, [mark])
+    // useEffect(() => {
+    //     if (makes) {
+    //             getModels(makes.makes)
+    //                 .then(res => console.log('res', res))
+    //     }
+    // }, [makes.makes])
 
 
 
-    const getMakeOptions = (marks) => {
-        let options = marks.sort((a, b) => a.name.localeCompare(b.name)).map(mark => {
+    const getMakeOptions = (makes) => {
+        let options = makes.makes.map(make => {
             return {
-                value: mark.id,
-                label: mark.name.charAt(0).toUpperCase() + mark.name.slice(1)
+                value: make.make_id,
+                label: make.make_display.charAt(0).toUpperCase()+ make.make_display.slice(1)
             }
         });
         return options;
 
     }
 
-    const getModelOptions = (marks) => {
-        let options = marks.sort((a, b) => a.name.localeCompare(b.name)).map(vehicle => {
-            return {
-                value: mark.name,
-                label: mark.name.charAt(0).toUpperCase() + vehicle.name.slice(1)
-            }
-        });
-        return options;
+    //  const getModelOptions = (makes) => {
+    //     let options = makes.makes.map(vehicle => {
+    //         return {
+    //             value: make.name,
+    //             label: make.name.charAt(0).toUpperCase() + vehicle.name.slice(1)
+    //         }
+    //      });
+    //     return options;
 
-    }
+    //  }
         return (
             <div className="Vehicle text-start">
-                {!marks ? (
+                {/* {console.log(makes.makes)
+                 makes.makes?.map(make => {
+                    return(
+                   <p key={make.make_id}>{make.make_display.charAt(0).toUpperCase()+ make.make_display.slice(1)}</p>
+                    )
+                 })
+                } */}
+                {!makes.makes ? (
                     <h1 className="mx-3">Loading...</h1>
                 ) : (
                     <div>
                         <Select 
-                            onChange={(input) => setMark(input.value)}
+                            onChange={(input) => setMakes(input.value)}
                             ref={selectRef} 
                             className="mt-5" 
-                            options={getMakeOptions(marks)}
+                            options={getMakeOptions(makes)}
                         > Choose Mark </Select>
-                        {/* {models && <Select className="mt-5" options={getModelOptions(vehicles)}> Choose Mark </Select> } */}
+                         {/* {models && <Select className="mt-5" options={getModelOptions(makes.makes)}> Choose Mark </Select> } */}
                     </div>
                 )}
             </div>
