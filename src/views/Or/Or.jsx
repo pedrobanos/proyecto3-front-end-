@@ -3,7 +3,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import InputComponent from '../../components/ImputComponent';
 import SearchBar from '../../components/SearchBar';
 
 

@@ -28,11 +28,11 @@ const MainMenu = () => {
                             <h5> LIST OF VEHICLES </h5>
                         </Link>
                     </div>
-                    <div className="col">
+                    {/* <div className="col">
                     <Link className="btn btn-warning mt-3" style={{width:200,height:45}} to="/vehicles">
                         <h5> LIST OF VEHICLES </h5>
                     </Link>
-                    </div>
+                    </div> */}
                     <div className="mt-5">
                         <img src={carImage} style={{ height: 180, width: 300 }} className="card-img-top" alt=" " />
                     </div>

@@ -11,7 +11,6 @@ const ListOfVehicles = () => {
     useEffect(() => {
         listVehicles()
             .then(response => {
-                console.log(response);
                 setVehicles(response)
             })
     }, [])
