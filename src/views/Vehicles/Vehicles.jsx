@@ -47,8 +47,6 @@ const getCompanyInsurance = () => {
     });
     return options;
 }
-
-
 const Vehicles = () => {
     const [makes, setMakes] = useState(null)
     const [models, setModels] = useState(null)
@@ -151,7 +149,6 @@ const Vehicles = () => {
                         </option>
                     ))}
                 </select>
-
                 <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
             </form>
         </div>
