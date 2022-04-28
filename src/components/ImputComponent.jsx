@@ -3,14 +3,14 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
     <div className="">
       {
         icon ? (
-          <div className="input-group input-group-sm mb-3 mx-2">
+          <div className="input-group input-group-sm mb-4">
             <div className="input-group-prepend">
               <span className="input-group-text" id="inputGroup-sizing-sm"><i className={icon}></i></span>
             </div>
             <input 
               style={{backgroundColor: "white"}}
               type={type}
-              className={`form-control ${error ? 'is-invalid' : ''}`}
+              className={`form-control rounded ${error ? 'is-invalid' : ''}`}
               id={id}
               placeholder={placeholder}
               {...register(name)}
@@ -25,7 +25,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
             <input
               type={type}
               style={{backgroundColor: "white"}}
-              className={`form-control ${error ? 'is-invalid' : ''}`}
+              className={`form-control-sm form-control ${error ? 'is-invalid' : ''}`}
               id={id}
               placeholder={placeholder}
               {...register(name)}
