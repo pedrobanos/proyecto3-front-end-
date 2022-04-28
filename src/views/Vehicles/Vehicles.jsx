@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getMakes, getModels } from "../../services/RoutesServices"
 import React from 'react'
-import InputComponent from "../../components/InputComponent"
+import InputComponent from "../../components/ImputComponent"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form"
