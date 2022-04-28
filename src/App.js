@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Spinner from "./components/Spinner/Spinner";
 import { useAuthContext } from "./contexts/AuthContext";
 import ProtectedRoute from "./guards/ProtectedRoute";
+import ListOfVehicles from "./views/ListOfVehicles/ListOfVehicles";
 import Login from "./views/Login/Login";
 import MainMenu from "./views/MainMenu/MainMenu";
 import Register from "./views/Register/Register";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/profile" element={<MainMenu />}></Route>
           <Route path="/vehicles/new" element={<Vehicles />}></Route>
+          <Route path="/vehicles" element={<ListOfVehicles />}></Route>
         </Route>
       </Routes>
         )}

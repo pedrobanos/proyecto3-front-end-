@@ -12,12 +12,13 @@ import Spinner from "../../components/Spinner/Spinner"
 
 
 const schema = yup.object({
-    vehicleInsurance: yup.string().required('kms is required'),
+    
     plate: yup.string().required('Plate is required'),
-    vin: yup.string().required('Need a VIN'),
+    vin: yup.string().min(17).required('Need a VIN'),
     price: yup.number().positive(),
-    //image: yup.string(),
-    horsepower: yup.number().integer()
+    make: yup.string().required('Choose a Make'),
+    model: yup.string().required('Select a model'),
+    vehicleInsurance: yup.string().required('kms is required')
 }).required()
 
 const getMakeOptions = (makes) => {
@@ -51,8 +52,6 @@ const getCompanyInsurance = () => {
     });
     return options;
 }
-
-
 
 
 const Vehicles = () => {
@@ -117,19 +116,13 @@ const Vehicles = () => {
                     name="plate"
                     register={register}
                 />
-                <select
-                    className="form-select bg-light mt-4"
-                    aria-label="Default select example"
-                    {...register('vehicleInsurance')}
-                >
-                    <option >Open this select menu</option>
-                    {getCompanyInsurance().map((option) => (
-                        <option key={option.value}
-                            value={option.value}>
-                            {option.value}
-                        </option>
-                    ))}
-                </select>
+                <InputComponent className="input-group mt-4"
+                    id="vin"
+                    error={backErrors?.vin || errors.vin?.message}
+                    placeholder="Enter VIN"
+                    name="vin"
+                    register={register}
+                />
                 {!makes ? (
                     <Spinner />
                 ) : (
@@ -137,6 +130,7 @@ const Vehicles = () => {
                         <select
                             className="form-select bg-light mt-4 "
                             arial-label="default input example"
+                            error={backErrors?.make || errors.make?.message}
                             {...register('make')}
                         >
                             <option >Choose a Mark</option>
@@ -148,6 +142,7 @@ const Vehicles = () => {
                             <select
                                 className="form-select bg-light mt-4"
                                 arial-label="model"
+                                error={backErrors?.model || errors.plate?.model}
                                 {...register('model')}
                             >
                                 <option>Choose a Model</option>
@@ -158,13 +153,21 @@ const Vehicles = () => {
                         }
                     </div>
                 )}
-                <InputComponent className="input-group mt-4"
-                    id="vin"
-                    error={backErrors?.vin || errors.vin?.message}
-                    placeholder="Enter VIN"
-                    name="vin"
-                    register={register}
-                />
+                <select
+                    className="form-select bg-light mt-4"
+                    aria-label="Default select example"
+                    {...register('vehicleInsurance')}
+                    error={backErrors?.vehicleInsurance || errors.vehicleInsurance?.message}
+                >
+                    <option >Select the Car Insurance</option>
+                    {getCompanyInsurance().map((option) => (
+                        <option key={option.value}
+                            value={option.value}>
+                            {option.value}
+                        </option>
+                    ))}
+                </select>
+
                 <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
             </form>
         </div>
