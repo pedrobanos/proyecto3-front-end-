@@ -10,9 +10,8 @@ import { register as registerRequest } from '../../services/VehicleServices'
 import Spinner from "../../components/Spinner/Spinner"
 
 
-
 const schema = yup.object({
-    
+
     plate: yup.string().required('Plate is required'),
     vin: yup.string().min(17).required('Need a VIN'),
     price: yup.number().positive(),
@@ -30,7 +29,6 @@ const getMakeOptions = (makes) => {
     });
     return options;
 }
-
 const getModelOptions = (models) => {
     let options = models?.map(model => {
         return {
@@ -40,9 +38,6 @@ const getModelOptions = (models) => {
     });
     return options;
 }
-
-
-
 const getCompanyInsurance = () => {
     let companyInsurances = ['Mutua Madrileña', 'MMT', 'Mapfre', 'Allianz', 'Reale', 'Linea Directa', 'Qualitas Auto', 'Pelayo', 'Caser Seguros', 'Catalana Occidente', 'AXA']
     let options = companyInsurances.map(companyInsurance => {
@@ -52,26 +47,20 @@ const getCompanyInsurance = () => {
     });
     return options;
 }
-
-
 const Vehicles = () => {
     const [makes, setMakes] = useState(null)
     const [models, setModels] = useState(null)
     const [backErrors, setBackErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
     const navigate = useNavigate()
-
     const { register, handleSubmit, formState: { errors }, watch } = useForm({
         resolver: yupResolver(schema)
     });
-
     const make = watch('make');
     const model = watch('model');
-
     const onSubmit = data => {
         setBackErrors({})
         setIsSubmitting(true)
-
         registerRequest(data)
             .then((vehicles) => {
                 navigate('/profile')
@@ -83,7 +72,6 @@ const Vehicles = () => {
                 setIsSubmitting(false)
             })
     };
-
     useEffect(() => {
         if (!makes) {
             getMakes()
@@ -92,23 +80,17 @@ const Vehicles = () => {
                 })
         }
     }, [makes])
-
-
     useEffect(() => {
         if (make) {
             getModels(make)
                 .then(res => {
                     setModels(res.Models)
                 })
-
         }
     }, [make])
-
-
     return (
         <div className="Vehicle text-start">
             <form onSubmit={handleSubmit(onSubmit)}>
-
                 <InputComponent className="input-group mt-4"
                     id="plate"
                     error={backErrors?.plate || errors.plate?.message}
@@ -167,13 +149,9 @@ const Vehicles = () => {
                         </option>
                     ))}
                 </select>
-
                 <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
             </form>
         </div>
     )
 }
-
-
-
 export default Vehicles
