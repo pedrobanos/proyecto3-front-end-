@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Spinner from "./components/Spinner/Spinner";
 import { useAuthContext } from "./contexts/AuthContext";
 import ProtectedRoute from "./guards/ProtectedRoute";
 import Login from "./views/Login/Login";
@@ -16,7 +17,7 @@ function App() {
       <Navbar />
       <div className="container">
         {!isAuthenticationFetched ? (
-          <p>Loading...</p>
+         <Spinner/>
         ) : (
       <Routes>
         <Route path="/register" element={<Register />}></Route>

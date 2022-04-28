@@ -2,7 +2,7 @@ import './Register.css'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
-import InputComponent from '../../components/ImputComponent'
+import InputComponent from '../../components/InputComponent'
 import { register as registerRequest } from '../../services/AuthService'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
