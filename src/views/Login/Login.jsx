@@ -23,10 +23,19 @@ const Login = () => {
     const { login } = useAuthContext()
     const [error, setError] = useState();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [inputs, setInputs] = useState({
+        garageId: "",
+        password: "",
+        rememberPassword: false,
+    });
+    const { garageId, password, rememberPassword } = inputs;
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
+    function handleRememberMeChange(e) {
+        setInputs((inputs) => ({ ...inputs, rememberPassword: !inputs.rememberPassword }));
+    }
 
     const onSubmit = data => {
         setError(undefined)
@@ -64,7 +73,7 @@ const Login = () => {
 
                         />
 
-                        <InputComponent className="input-group"
+                        <InputComponent className="input-group pb-4"
                             id="password"
                             register={register}
                             error={error || errors.password?.message}
@@ -73,11 +82,30 @@ const Login = () => {
                             name="password"
                             icon={"fa-solid fa-lock"}
                         />
-                        <h6 className='fs-6 mb-4'>Aqui va el enlace al register</h6>
-                        <div className='text-center'>
-                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'danger'}`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                        <div className=" form-actions form-check mt-2">
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id="rememberPassword"
+                                name="checkbox"
+                                checked={rememberPassword}
+                                onChange={handleRememberMeChange}
+                            />
+                            <label className="form-check-label fs-6" htmlFor="rememberPassword">
+                                Remember me
+                            </label>
                         </div>
-                    </div >
+                    </div>
+                    <div className='text-center'>
+                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'danger'} col-6 rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                    </div>
+                    <hr></hr>
+                    <div className='CreateAcount'>
+                        <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
+                        <Link className='AccountText' to="/register"><p> Join us.</p>
+                        </Link>
+                    </div>
+
                 </div >
             </form>
         </div>

@@ -3,7 +3,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
     <div className="">
       {
         icon ? (
-          <div className="input-group input-group-sm mb-4">
+          <div className="input-group input-group-sm mt-4">
             <div className="input-group-prepend">
               <span className="input-group-text" id="inputGroup-sizing-sm"><i className={icon}></i></span>
             </div>
@@ -19,7 +19,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
           </div>
         ) : (
           <div>
-            <label htmlFor={id} className="form-label">
+            <label htmlFor={id} className="form-label mt-2 mb-0">
               {label}
             </label>
             <input

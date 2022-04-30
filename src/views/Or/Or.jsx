@@ -41,12 +41,13 @@ const Or = () => {
             </ul>
             <SearchBar setSearch={setSearch} />
 
-                {/* <form class="d-flex mx-4" method="GET" action="/parties/results">
+            {/* <form class="d-flex mx-4" method="GET" action="/parties/results">
                     <input class="form-control me-2" name="name" type="search" placeholder="Encuentra eventos" aria-label="Search">
                         <button class="btn btn-outline-success fa-solid" type="submit">
                             <i class="fa fa-magnifying-glass"></i>
                         </button>
                 </form> */}
+            
         </div>
     );
 };
