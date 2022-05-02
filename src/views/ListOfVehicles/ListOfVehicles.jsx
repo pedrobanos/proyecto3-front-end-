@@ -37,8 +37,8 @@ const ListOfVehicles = () => {
                                 <th scope="row">{vehicle.plate}</th>
                                 <td>{vehicle.make}</td>
                                 <td>{vehicle.model}</td>
-                                <td>{vehicle.carOwner.name}</td> 
-                                <td>{vehicle.carOwner.phoneNumber}</td>
+                                <td>{vehicle?.carOwner?.name}</td> 
+                                <td>{vehicle?.carOwner?.phoneNumber}</td>
 
                             </tr>
                         ))}
