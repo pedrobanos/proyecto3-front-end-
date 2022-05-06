@@ -1,4 +1,4 @@
-const InputComponent = ({ label, id, name, type, placeholder, register, error, icon }) => {
+const InputComponent = ({ label, id, name, type, placeholder, register, error, icon, eye, onToggle}) => {
   return (
     <div className="">
       {
@@ -7,14 +7,22 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
             <div className="input-group-prepend">
               <span className="input-group-text" id="inputGroup-sizing-sm"><i className={icon}></i></span>
             </div>
-            <input 
-              style={{backgroundColor: "white"}}
+            <input
+              style={{ backgroundColor: "white" }}
               type={type}
               className={`form-control rounded ${error ? 'is-invalid' : ''}`}
               id={id}
               placeholder={placeholder}
               {...register(name)}
-            />
+            /> {eye && 
+              <div>
+                <span className="input-group-text">
+                  <i className={eye}
+                    style={{ cursor: "pointer" }}
+                    onClick={onToggle}></i>
+                </span>
+              </div>
+            }
             <p className="invalid-feedback">{error}</p>
           </div>
         ) : (
@@ -24,7 +32,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
             </label>
             <input
               type={type}
-              style={{backgroundColor: "white"}}
+              style={{ backgroundColor: "white" }}
               className={`form-control-sm form-control ${error ? 'is-invalid' : ''}`}
               id={id}
               placeholder={placeholder}
@@ -42,5 +50,6 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
 InputComponent.defaultProps = {
   type: 'text'
 }
+
 
 export default InputComponent

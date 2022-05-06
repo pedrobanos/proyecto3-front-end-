@@ -6,8 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
-import { register as registerRequest, registerNewVehicle } from '../../services/VehicleServices'
-import Spinner from "../../components/Spinner/Spinner"
+import { register as registerNewOwner } from '../../services/CarOwnserService'
+
 
 
 const schema = yup.object({
@@ -34,13 +34,14 @@ const CarOwners = () => {
     });
 
 
-    const onSubmit = data => {
-        setBackErrors({})
-        setIsSubmitting(true)
+    const onSubmit = data => { 
+         setBackErrors({})
+         setIsSubmitting(true)
 
-        registerRequest(data)
+         registerNewOwner(data)
             .then((carOwner) => {
-                navigate('/vehicles/new')
+                navigate(`/vehicles/new?client=${carOwner._id}`)
+                console.log(carOwner._id);
             })
             .catch(err => {
                 setBackErrors(err?.response?.data?.errors)
@@ -52,7 +53,7 @@ const CarOwners = () => {
 
     return (
         <div className="container">
-            <h1>Register</h1>
+            <h1 className="mt-4 mb-3">New Client: </h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputComponent
                     label="Name"
@@ -120,7 +121,7 @@ const CarOwners = () => {
                     error={backErrors?.phoneNumber || errors.phoneNumber?.message}
                     name="phoneNumber"
                 />
-                <button className={`btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating company...' : 'Submit'}</button>
+                <button className={`btn btn-${isSubmitting ? 'secondary' : 'primary'} mt-3`}>{isSubmitting ? 'Creating company...' : 'Submit'}</button>
             </form>
         </div>
     )
