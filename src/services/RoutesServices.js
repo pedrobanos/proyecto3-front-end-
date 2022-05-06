@@ -1,7 +1,7 @@
 import carHttp from "./CarBrandService";
 
 
-export const getMakes = () => carHttp.get(`?cmd=getMakes`)
+export const getMakes = () => carHttp.get(`?cmd=getMakes&year=2010`)
 
 export const getModels = (make) => carHttp.get(`?cmd=getModels&make=${make}`)
 

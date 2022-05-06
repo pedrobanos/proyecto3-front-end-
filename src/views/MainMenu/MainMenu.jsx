@@ -10,7 +10,7 @@ const MainMenu = () => {
             <div className="mt-3 mx-4 row text-center justify-content-center">
                 <h1 className="text-decoration-underline">Main Menu</h1>
                 <div className="col">
-                    <Link className="btn btn-warning mt-4" style={{ width: 200, height: 45 }} to="/ors/new">
+                    <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/ors/new">
                         <h5> NEW OR </h5>
                     </Link>
                     <div className="col">
@@ -19,20 +19,20 @@ const MainMenu = () => {
                         </Link>
                     </div>
                     <div className="col">
-                        <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/carowners/new">
+                        <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/ors">
                             <h5> PENDING OR's </h5>
                         </Link>
                     </div>
                     <div className="col">
                         <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/vehicles">
-                            <h5> LIST OF VEHICLES </h5>
+                            <h5> VEHICLES DATA </h5>
                         </Link>
                     </div>
-                    {/* <div className="col">
-                    <Link className="btn btn-warning mt-3" style={{width:200,height:45}} to="/vehicles">
-                        <h5> LIST OF VEHICLES </h5>
+                    <div className="col">
+                    <Link className="btn btn-warning mt-3" style={{width:200,height:45}} to="/carowners">
+                        <h5> CLIENTS DATA </h5>
                     </Link>
-                    </div> */}
+                    </div>
                     <div className="mt-5">
                         <img src={carImage} style={{ height: 180, width: 300 }} className="card-img-top" alt=" " />
                     </div>

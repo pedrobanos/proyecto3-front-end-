@@ -1,14 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Spinner from "./components/Spinner/Spinner";
 import { useAuthContext } from "./contexts/AuthContext";
 import ProtectedRoute from "./guards/ProtectedRoute";
+import CarOwners from "./views/CarOwners/CarOwners";
 import ListOfVehicles from "./views/ListOfVehicles/ListOfVehicles";
 import Login from "./views/Login/Login";
 import MainMenu from "./views/MainMenu/MainMenu";
 import Or from "./views/Or/Or";
 import Register from "./views/Register/Register";
 import Vehicles from "./views/Vehicles/Vehicles";
+import DetailFromOr from "./views/DetaiFromOr/DetailFromOr";
+import CarOwnersList from "./views/CarOwners/CarOwnersList";
 
 
 
@@ -28,8 +30,11 @@ function App() {
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/profile" element={<MainMenu />}></Route>
           <Route path="/ors/new" element={<Or />}></Route>
+          <Route path="/ors/:id" element={<DetailFromOr/>}></Route>
           <Route path="/vehicles/new" element={<Vehicles />}></Route>
           <Route path="/vehicles" element={<ListOfVehicles />}></Route>
+          <Route path="/carowners/new" element={<CarOwners />}></Route>
+          <Route path="/carowners" element={<CarOwnersList/>}></Route>
         </Route>
       </Routes>
         )}
