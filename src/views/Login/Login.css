@@ -1,0 +1,11 @@
+.AccountText {
+    font-size: 12px;
+    text-align: center;
+    /* display: flex; */
+}
+
+.CreateAcount {
+    display: flex;
+    justify-content: center;
+
+}

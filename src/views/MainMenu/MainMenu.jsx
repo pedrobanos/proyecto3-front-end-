@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import "./MainMenu.css"
 import carImage from "../../assets/car-image.webp"
+import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 
 
 const MainMenu = () => {
@@ -36,6 +37,7 @@ const MainMenu = () => {
                     <div className="mt-5">
                         <img src={carImage} style={{ height: 180, width: 300 }} className="card-img-top" alt=" " />
                     </div>
+                    <DropDownMenu />
                 </div>
             </div>
         </div>

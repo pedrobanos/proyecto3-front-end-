@@ -24,10 +24,19 @@ const Login = () => {
     const [error, setError] = useState();
     const [toggle, setToggle]= useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [inputs, setInputs] = useState({
+        garageId: "",
+        password: "",
+        rememberPassword: false,
+    });
+    const { garageId, password, rememberPassword } = inputs;
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
+    function handleRememberMeChange(e) {
+        setInputs((inputs) => ({ ...inputs, rememberPassword: !inputs.rememberPassword }));
+    }
 
     const onSubmit = data => {
         setError(undefined)
@@ -51,7 +60,7 @@ const Login = () => {
         <div className="container Login">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row justify-content-center my-5">
-                    <div className="col-6 col-sm-8 col-md-8 col-lg-10">
+                    <div className="col-6 col-sm-8 col-md-8 col-lg-6">
                         <div className='text-center mb-4'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -69,7 +78,7 @@ const Login = () => {
 
                         />
 
-                        <InputComponent className="input-group"
+                        <InputComponent className="input-group pb-4"
                             id="password"
                             register={register}
                             onToggle={onToggle}
@@ -81,11 +90,30 @@ const Login = () => {
                             eye={"far fa-eye"}
                            
                         />
-                        <h6 className='fs-6 mb-4'>Aqui va el enlace al register</h6>
-                        <div className='text-center'>
-                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'danger'}`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                        <div className=" form-actions form-check mt-2">
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id="rememberPassword"
+                                name="checkbox"
+                                checked={rememberPassword}
+                                onChange={handleRememberMeChange}
+                            />
+                            <label className="form-check-label fs-6" htmlFor="rememberPassword">
+                                Remember me
+                            </label>
                         </div>
-                    </div >
+                    </div>
+                    <div className='text-center'>
+                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'danger'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                    </div>
+                    <hr></hr>
+                    <div className='CreateAcount'>
+                        <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
+                        <Link className='AccountText' to="/register"><p> Join us.</p>
+                        </Link>
+                    </div>
+
                 </div >
             </form>
         </div>
