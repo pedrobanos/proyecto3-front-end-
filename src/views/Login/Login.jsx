@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import InputComponent from '../../components/InputComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -22,6 +22,7 @@ const Login = () => {
 
     const { login } = useAuthContext()
     const [error, setError] = useState();
+    const [toggle, setToggle]= useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [inputs, setInputs] = useState({
         garageId: "",
@@ -50,7 +51,11 @@ const Login = () => {
             })
             .finally(() => setIsSubmitting(false))
     }
-
+    const onToggle = () => {
+        
+        setToggle(curr => !curr )
+    }
+     
     return (
         <div className="container Login">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -76,11 +81,14 @@ const Login = () => {
                         <InputComponent className="input-group pb-4"
                             id="password"
                             register={register}
+                            onToggle={onToggle}
                             error={error || errors.password?.message}
                             placeholder="Password"
-                            type="password"
+                            type= {toggle ? 'text' : 'password'}
                             name="password"
                             icon={"fa-solid fa-lock"}
+                            eye={"far fa-eye"}
+                           
                         />
                         <div className=" form-actions form-check mt-2">
                             <input
