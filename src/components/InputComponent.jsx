@@ -18,8 +18,8 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
             <p className="invalid-feedback">{error}</p>
           </div>
         ) : (
-          <div>
-            <label htmlFor={id} className="form-label mt-2 mb-0">
+          <div className="mt-">
+            <label htmlFor={id} className="form-label mb-0">
               {label}
             </label>
             <input
@@ -30,9 +30,8 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
               placeholder={placeholder}
               {...register(name)}
             />
-            <p className="invalid-feedback">{error}</p>
+            <p className="invalid-feedback mt-0">{error}</p>
           </div>
-
         )
       }
     </div>

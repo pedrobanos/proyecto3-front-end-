@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+
 import Spinner from "./components/Spinner/Spinner";
 import { useAuthContext } from "./contexts/AuthContext";
 import ProtectedRoute from "./guards/ProtectedRoute";

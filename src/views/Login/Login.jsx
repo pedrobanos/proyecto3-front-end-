@@ -55,7 +55,7 @@ const Login = () => {
         <div className="container Login">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row justify-content-center my-5">
-                    <div className="col-6 col-sm-8 col-md-8 col-lg-10">
+                    <div className="col-6 col-sm-8 col-md-8 col-lg-6">
                         <div className='text-center mb-4'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -97,7 +97,7 @@ const Login = () => {
                         </div>
                     </div>
                     <div className='text-center'>
-                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'danger'} col-6 rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'danger'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
                     </div>
                     <hr></hr>
                     <div className='CreateAcount'>
