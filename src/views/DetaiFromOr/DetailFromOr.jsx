@@ -10,6 +10,10 @@ const DetailFromOr = () => {
     const { id } = useParams()
     const [currentGarage, setCurrentGarage] = useState({})
     const { garage } = useAuthContext()
+    const subTotalLine= or.qty * or.price
+    const subTotal= (or.qty * or.price)-(or.qty * or.price*or.discount)/100
+    const tax = (or.qty * or.price * 0.21).toFixed(2)
+    const total = (((or.qty * or.price)-(or.qty * or.price*or.discount)/100)+(or.qty * or.price * 0.21)).toFixed(2)
 
     useEffect(() => {
         getCurrentGarage()
@@ -47,10 +51,10 @@ const DetailFromOr = () => {
                                     </tr>
                                     <tr className="content">
                                         <td className="font-weight-bold">
-                                            Plate:{or?.vehicle?.plate}<br />
+                                            Plate: {or?.vehicle?.plate}<br />
                                             Make: {or?.vehicle?.make.toUpperCase()}<br />
-                                            Model:{or?.vehicle?.model.toUpperCase()} <br />
-                                            VIN:{or?.vehicle?.vin}
+                                            Model: {or?.vehicle?.model.toUpperCase()} <br />
+                                            VIN: {or?.vehicle?.vin}
                                         </td>
                                         <td className="font-weight-bold mx-3">
                                             Name: {or?.vehicle?.carOwner?.name} <br /> 
@@ -65,9 +69,9 @@ const DetailFromOr = () => {
                             <table className="table table-borderless mx-2"> Damage Images:
                                 <tbody>
                                     <tr className="add">
-                                        <td><img src={or.damageFotos} style={{width:125, height:100}}></img></td>
-                                        <td><img src={or.damageFotos} style={{width:125, height:100}}></img></td>
-                                        <td><img src={or.damageFotos} style={{width:125, height:100}}></img></td>
+                                        {or?.damageFotos?.map((damageFoto,i) => (
+                                            <td key={i}><img src={damageFoto} style={{width:125, height:100}}></img></td>
+                                        ))}
                                     </tr>
                                 </tbody>
                             </table>
@@ -80,14 +84,19 @@ const DetailFromOr = () => {
                                     <tr className="add">
                                         <td>Operation</td>
                                         <td>Quantity</td>
+                                        <td>Discount</td>
                                         <td>Price</td>
                                         <td className="text-center">Total</td>
                                     </tr>
                                     <tr className="content">
-                                        <td>{or.operation}</td>
+                                        {/* {or?.operation?.map(el =>(
+                                             <td>{el}</td>
+                                        ))} */}
+                                         <td>{or.operation}</td>
                                         <td>{or.qty}</td>
+                                        <td>{or.discount}%</td>
                                         <td>{or.price}€</td>
-                                        <td className="text-center">{or.qty * or.price}€</td>
+                                        <td className="text-center">{subTotalLine}€</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -104,9 +113,9 @@ const DetailFromOr = () => {
                                     </tr>
                                     <tr className="content">
                                         <td></td>
-                                        <td>{or.qty * or.price}€</td>
-                                        <td>{(or.qty * or.price * 0.21).toFixed(2)}€</td>
-                                        <td className="text-center">{((or.qty * or.price * 0.21)+(or.qty* or.price)).toFixed(2)}€</td>
+                                        <td>{subTotal}€</td>
+                                        <td>{tax}€</td>
+                                        <td className="text-center">{total} €</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -198,6 +198,7 @@ const Or = () => {
                                 id="exampleFormControlTextarea1"
                                 rows="3"
                                 style={{ backgroundColor: "white" }}
+                                {...register('operation')}
                             >
                             </textarea>
                         </div>
