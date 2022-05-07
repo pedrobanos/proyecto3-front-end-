@@ -87,7 +87,6 @@ const Vehicles = () => {
     useEffect(() => {
         getCarOwner(carOwnerInfo)
             .then(carOwner => {
-                console.log(carOwner);
                 setCarOwner(carOwner)
             })
     }, [])
@@ -108,6 +107,7 @@ const Vehicles = () => {
                 })
         }
     }, [make])
+
     return (
         <div className="Vehicle text-start">
             <h1 className="mt-4 mb-4">New Vehicle</h1>
@@ -146,7 +146,7 @@ const Vehicles = () => {
                                 error={backErrors?.make || errors.make?.message}
                                 {...register('make')}
                             >
-                                <option >Choose a Mark</option>
+                                <option >Choose a Make</option>
                                 {getMakeOptions(makes).map((option) => (
                                     <option key={option.value} value={option.value}>{option.label}</option>
                                 ))}
