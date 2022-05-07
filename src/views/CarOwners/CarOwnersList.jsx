@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import SearchBar from "../../components/SearchBar"
 import Spinner from "../../components/Spinner/Spinner"
 import { useAuthContext } from "../../contexts/AuthContext"
@@ -123,6 +124,7 @@ const CarOwnersList = () => {
                     </div>
                 </div>
             )}
+            <DropDownMenu/>
         </div>
     )
 }

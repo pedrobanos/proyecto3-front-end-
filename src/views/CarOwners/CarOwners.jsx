@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { useForm } from "react-hook-form"
 import { useNavigate } from 'react-router-dom';
 import { register as registerNewOwner } from '../../services/CarOwnserService'
+import DropDownMenu from "../../components/DropDownMenu/DropDownMenu";
 
 
 
@@ -123,6 +124,7 @@ const CarOwners = () => {
                 />
                 <button className={`btn btn-${isSubmitting ? 'secondary' : 'primary'} mt-3`}>{isSubmitting ? 'Creating company...' : 'Submit'}</button>
             </form>
+            <DropDownMenu/>
         </div>
     )
 }

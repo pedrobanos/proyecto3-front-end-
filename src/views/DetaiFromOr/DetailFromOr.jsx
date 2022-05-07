@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OrDetails } from '../../services/OrServices';
 import logo from "../../assets/full_width.png"
+import "./DetailFromOr.css"
+import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { getCurrentGarage } from '../../services/GarageService';
 
@@ -131,6 +133,7 @@ const DetailFromOr = () => {
                     </div>
                 </div>
             </div>
+            <DropDownMenu/>
         </div>
 
     )
