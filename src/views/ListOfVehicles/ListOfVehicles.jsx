@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import Spinner from "../../components/Spinner/Spinner"
 import { deleteVehicle, listVehicles } from "../../services/VehicleServices"
 import SearchBar from "../../components/SearchBar"
+import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
 
 const ListOfVehicles = () => {
@@ -105,6 +106,7 @@ const ListOfVehicles = () => {
                     </table>
                 </div>
             )}
+            <DropDownMenu/>
         </div >
     )
 }

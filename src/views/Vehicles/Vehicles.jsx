@@ -10,6 +10,9 @@ import { register as registerRequest } from '../../services/VehicleServices'
 import Spinner from "../../components/Spinner/Spinner"
 import { getCarOwner } from "../../services/CarOwnserService"
 import './Vehicles.css'
+import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
+import CreateCarOwnerComp from "../../components/CreateCarOwnerComp/CreateCarOwnerComp"
+import SearchClientComp from "../../components/SearchClientComp/SearchClientComp"
 
 
 const schema = yup.object({
@@ -59,24 +62,30 @@ const Vehicles = () => {
     const [models, setModels] = useState(null)
     const [backErrors, setBackErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const navigate = useNavigate()
+    const [carOwnerSearch, setCarOwnerSearch] = useState()
     const { register, handleSubmit, formState: { errors }, watch } = useForm({
-        resolver: yupResolver(schema),
+        //resolver: yupResolver(schema),
         defaultValues: {
             carOwner: carOwnerInfo
         }
     });
     const make = watch('make');
+    console.log({make});
     const model = watch('model');
+    const navigate = useNavigate()
+
+    console.log(errors)
+    
     const onSubmit = data => {
         setBackErrors({})
         setIsSubmitting(true)
         registerRequest(data)
             .then((vehicle) => {
-                navigate(`/ors/new?vehicle=${vehicle._id}&client=${carOwnerInfo}`)
+                navigate(`/ors/new?plate=${vehicle.plate}&nif=${carOwner.nifOrNie}`)
                 console.log(vehicle._id); ///
             })
             .catch(err => {
+                console.log(err)
                 setBackErrors(err?.response?.data?.errors)
             })
             .finally(() => {
@@ -85,11 +94,11 @@ const Vehicles = () => {
     };
 
     useEffect(() => {
-        getCarOwner(carOwnerInfo)
+        carOwnerInfo && getCarOwner(carOwnerInfo)
             .then(carOwner => {
                 setCarOwner(carOwner)
             })
-    }, [])
+    }, [carOwnerInfo])
 
     useEffect(() => {
         if (!makes) {
@@ -103,6 +112,7 @@ const Vehicles = () => {
         if (make) {
             getModels(make)
                 .then(res => {
+                    console.log('hola');
                     setModels(res.Models)
                 })
         }
@@ -110,92 +120,43 @@ const Vehicles = () => {
 
     return (
         <div className="Vehicle text-start">
-            <h1 className="mt-4 mb-4">New Vehicle</h1>
+            <h1 className="mt-4 mb-4">ADD CLIENT</h1>
             {carOwner ? (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <h4 className="mb-3">Client data</h4>
-                        <small>Name: {carOwner.name}</small>
-                        <br/>
-                        <small>DNI: {carOwner.nifOrNie}</small>
-                        <br/>
-                        <small>Tel: {carOwner.phoneNumber}</small>
-                    </div>
-                    <h4 className="mt-4">Vehicle data</h4>
-                    <InputComponent className="input-group mt-4"
-                        id="plate"
-                        error={backErrors?.plate || errors.plate?.message}
-                        placeholder="Enter Plate"
-                        name="plate"
-                        register={register}
-                    />
-                    <InputComponent className="input-group mt-4"
-                        id="vin"
-                        error={backErrors?.vin || errors.vin?.message}
-                        placeholder="Enter VIN"
-                        name="vin"
-                        register={register}
-                    />
-                    {!makes ? (
-                        <Spinner />
-                    ) : (
-                        <div>
-                            <select
-                                className="form-select bg-light mt-4 "
-                                arial-label="default input example"
-                                error={backErrors?.make || errors.make?.message}
-                                {...register('make')}
-                            >
-                                <option >Choose a Make</option>
-                                {getMakeOptions(makes).map((option) => (
-                                    <option key={option.value} value={option.value}>{option.label}</option>
-                                ))}
-                            </select>
-                            {models &&
-                                <select
-                                    className="form-select bg-light mt-4"
-                                    arial-label="model"
-                                    error={backErrors?.model || errors.plate?.model}
-                                    {...register('model')}
-                                >
-                                    <option>Choose a Model</option>
-                                    {getModelOptions(models)?.map((option) => (
-                                        <option key={option.value} value={option.value}>{option.label}</option>
-                                    ))}
-                                </select>
-                            }
-                        </div>
-                    )}
-                    <select
-                        className="form-select bg-light mt-4"
-                        aria-label="Default select example"
-                        {...register('vehicleInsurance')}
-                        error={backErrors?.vehicleInsurance || errors.vehicleInsurance?.message}
-                    >
-                        <option >Select the Car Insurance</option>
-                        {getCompanyInsurance().map((option) => (
-                            <option key={option.value}
-                                value={option.value}>
-                                {option.value}
-                            </option>
-                        ))}
-                    </select>
-                    <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
-                </form>
+                <CreateCarOwnerComp
+                    getMakeOptions={getMakeOptions}
+                    getModelOptions={getModelOptions}
+                    getCompanyInsurance={getCompanyInsurance}
+                    carOwner={carOwner}
+                    onSubmit={onSubmit}
+                    backErrors={backErrors}
+                    isSubmitting={isSubmitting}
+                    makes={makes}
+                    models={models}
+                    errors={errors}
+                    register={register}
+                    handleSubmit={handleSubmit}
 
+                />
             ) : (
                 <div className='OrContainer'>
-                <div className='ClientContainer'>
-                    <p>Name: ______________________________  </p>  
-                    <p>Phone Number:_______________________ </p>
-                    <Link className='mx-3' to={'/carowners/new'} style={{ textDecoration: 'none' }} >
-                        <i style={{ color: 'black' }} className="fa-solid fa-plus"></i>
-                    </Link>
-                </div>
-                
-            </div >
+                    <SearchClientComp
+                        onSubmit={onSubmit}
+                        backErrors={backErrors}
+                        isSubmitting={isSubmitting}
+                        models={models}
+                        carOwnerSearch={carOwnerSearch}
+                        setCarOwnerSearch={setCarOwnerSearch}
+                        getModelOptions={getModelOptions}
+                        getMakeOptions={getMakeOptions}
+                        getCompanyInsurance={getCompanyInsurance}
+                        makes={makes}
+                        errors={errors}
+                        register={register}
+                        handleSubmit={handleSubmit}
+                    />
+                </div >
             )}
-
+            <DropDownMenu />
         </div>
     )
 }
