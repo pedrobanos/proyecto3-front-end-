@@ -4,7 +4,7 @@ import { getAccessToken, logout } from "../store/AccessTokenStore";
 
 const createHttp = (useAccessToken = false) => {
     const http = axios.create({
-        baseURL: 'https://garagemanager.onrender.com/api'
+        baseURL: `${process.env.REACT_APP_API_URL}/api`
     })
 
 
