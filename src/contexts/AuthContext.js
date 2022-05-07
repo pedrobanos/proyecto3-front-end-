@@ -45,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
         garage,
         isAuthenticationFetched,
         login,
+        getGarage
     }
 
     return (

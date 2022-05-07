@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 //import { getMakes, getModels } from "../../services/RoutesServices"
 import React from 'react'
 import InputComponent from "../../components/InputComponent"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form"
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { register as registerNewOwner } from '../../services/CarOwnserService'
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu";
 

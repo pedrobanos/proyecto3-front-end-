@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import Spinner from "../../components/Spinner/Spinner"
-import { listVehicles } from "../../services/VehicleServices"
+import { deleteVehicle, listVehicles } from "../../services/VehicleServices"
 import SearchBar from "../../components/SearchBar"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
+import { useAuthContext } from "../../contexts/AuthContext"
 
 const ListOfVehicles = () => {
 
     const [vehicles, setVehicles] = useState(null)
+    const { garage, getGarage } = useAuthContext()
     const [filteredResults, setFilteredResults] = useState([]);
     const [search, setSearch] = useState("")
+
+    const handleDelete = (id) => {
+        deleteVehicle(id)
+          .then(() => {
+            getGarage()
+          })
+      }
 
     useEffect(() => {
         listVehicles()
             .then(response => {
                 setVehicles(response)
             })
-    }, [])
+    }, [garage])
 
     const searchItems = (searchValue) => {
         setSearch(searchValue)
@@ -56,27 +65,39 @@ const ListOfVehicles = () => {
                         {/* <Link to={`/vehicles/${vehicle.id}`}> */}
                         <tbody>
                             {search ? (
-                                filteredResults.map((vehicle) => (
+                                filteredResults?.map((vehicle) => (
                                     <tr key={vehicle.id}>
                                         <th scope="row">{vehicle.plate}</th>
                                         <td>{vehicle.make.charAt(0).toUpperCase() + vehicle.make.slice(1)}</td>
                                         <td>{vehicle.model}</td>
                                         <td>{vehicle?.carOwner?.name}</td>
                                         <td>{vehicle?.carOwner?.phoneNumber}</td>
-                                        <i className="fa-solid fa-pen-to-square"></i>
-                                        <i className="fa-solid fa-trash"></i>
+                                        <Link to={`/vehicles/${vehicle.id}/edit`}>
+                                            <i className="fa-solid fa-pen-to-square"></i>
+                                        </Link>
+                                        <button className="btn " 
+                                        onClick={() => handleDelete(vehicle.id)}>
+                                            <i className="fa-solid fa-trash"
+                                            style={{color:"red", border:'none'}}></i> 
+                                            </button>
                                     </tr>
                                 ))
                             ) : (
-                                vehicles.map((vehicle) => (
+                                vehicles?.map((vehicle) => (
                                     <tr key={vehicle.id}>
                                         <th scope="row">{vehicle.plate}</th>
                                         <td>{vehicle.make.charAt(0).toUpperCase() + vehicle.make.slice(1)}</td>
                                         <td>{vehicle.model}</td>
                                         <td>{vehicle?.carOwner?.name}</td>
                                         <td>{vehicle?.carOwner?.phoneNumber}</td>
-                                        <i className="fa-solid fa-pen-to-square"></i>
-                                        <i className="fa-solid fa-trash"></i>
+                                        <Link to={`/vehicles/${vehicle.id}/edit`}>
+                                            <i className="fa-solid fa-pen-to-square"></i>
+                                        </Link>
+                                        <button className="btn " 
+                                        onClick={() => handleDelete(vehicle.id)}>
+                                            <i className="fa-solid fa-trash"
+                                            style={{color:"red", borderColor:'none'}}></i> 
+                                            </button>
                                     </tr>
                                 )
                                 ))}

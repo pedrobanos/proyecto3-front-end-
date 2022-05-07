@@ -117,6 +117,7 @@ const Vehicles = () => {
                 })
         }
     }, [make])
+
     return (
         <div className="Vehicle text-start">
             <h1 className="mt-4 mb-4">ADD CLIENT</h1>

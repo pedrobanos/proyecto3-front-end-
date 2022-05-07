@@ -13,7 +13,7 @@ const DropDownMenu = () => {
   }
   return (
       <div className="dropdownContainer">
-        <Dropdown isOpen={dropdown} toggle={openCloseDrop} direction="left">
+        <Dropdown isOpen={dropdown} toggle={openCloseDrop} direction="top">
           <DropdownToggle className="menuDropdown">
           <i className="fa-solid fa-bars"></i>
           </DropdownToggle>

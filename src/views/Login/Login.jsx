@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import InputComponent from '../../components/InputComponent';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';

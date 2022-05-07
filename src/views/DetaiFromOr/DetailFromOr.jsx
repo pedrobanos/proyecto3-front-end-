@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCarOwner } from '../../services/CarOwnserService';
 import { OrDetails } from '../../services/OrServices';
-import { getVehicle } from '../../services/VehicleServices';
 import logo from "../../assets/full_width.png"
 import "./DetailFromOr.css"
 import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { getCurrentGarage } from '../../services/GarageService';
 
 const DetailFromOr = () => {
     const [or, setOr] = useState({})
-    const [carOwner, setCarOwner] = useState(null)
-    const [vehicle, setVehicle] = useState(null)
     const { id } = useParams()
+    const [currentGarage, setCurrentGarage] = useState({})
+    const { garage } = useAuthContext()
 
-    // useEffect(() => {
-    //     getCarOwner()
-    //         .then(carOwner => {
-    //             setCarOwner(carOwner)
-    //         })
-    // }, [])
-
-    // useEffect(() => {
-    //     getVehicle()
-    //         .then(vehicle => {
-    //             setVehicle(vehicle)
-    //         })
-    // }, [])
+    useEffect(() => {
+        getCurrentGarage()
+          .then(garage => {
+            setCurrentGarage(garage)
+          })
+      }, [])
+    
 
     useEffect(() => {
         OrDetails(id)
@@ -41,7 +35,8 @@ const DetailFromOr = () => {
                         <div className="d-flex flex-row p-2 mt-2"> <img src={logo} style={{width:100, height:100}} />
                             <div className="d-flex flex-column mx-5"> <h1 className="font-weight-bold">Repair Budget</h1> 
                             <small>Nº: {or.id}</small> 
-                            <small>Entry: {new Date(or.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }</small>
+                            <small>Entry Date: {new Date(or.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }</small>
+                            <small>Entry kms: {or.entryKms}kms</small> 
                             </div>
                         </div>
                         <hr />
@@ -50,11 +45,19 @@ const DetailFromOr = () => {
                                 <tbody>
                                     <tr className="add">
                                         <td>Vehicle:</td>
-                                        <td>Client:</td>
+                                        <td className='mx-3'>Client:</td>
                                     </tr>
                                     <tr className="content">
-                                        <td className="font-weight-bold">Google <br />Attn: John Smith Pymont <br />Australia</td>
-                                        <td className="font-weight-bold">Facebook <br /> Attn: John Right Polymont <br /> USA</td>
+                                        <td className="font-weight-bold">
+                                            Plate:{or?.vehicle?.plate}<br />
+                                            Make: {or?.vehicle?.make.toUpperCase()}<br />
+                                            Model:{or?.vehicle?.model.toUpperCase()} <br />
+                                            VIN:{or?.vehicle?.vin}
+                                        </td>
+                                        <td className="font-weight-bold mx-3">
+                                            Name: {or?.vehicle?.carOwner?.name} <br /> 
+                                            NIF/NIE: {or?.vehicle?.carOwner?.nifOrNie}<br /> 
+                                            Tel: {or?.vehicle?.carOwner?.phoneNumber} </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -105,7 +108,7 @@ const DetailFromOr = () => {
                                         <td></td>
                                         <td>{or.qty * or.price}€</td>
                                         <td>{(or.qty * or.price * 0.21).toFixed(2)}€</td>
-                                        <td className="text-center">{((or.qty * or.price * 0.21)+or.qty).toFixed(2)}€</td>
+                                        <td className="text-center">{((or.qty * or.price * 0.21)+(or.qty* or.price)).toFixed(2)}€</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -115,10 +118,14 @@ const DetailFromOr = () => {
                             <table className="table table-borderless">
                                 <tbody>
                                     <tr className="add">
-                                        <td>Bank Details</td>
+                                        <td>{garage.bussinesName}</td>
                                     </tr>
                                     <tr className="content">
-                                        <td> Bank Name : ADS BANK <br /> Swift Code : ADS1234Q <br /> Account Holder : Jelly Pepper <br /> Account Number : 5454542WQR <br /> </td>
+                                        <td> CIF : {garage.cif} <br /> 
+                                            Address : {garage.address.street} <br /> 
+                                            {garage.address.zipCode},{garage.address.city}<br /> 
+                                            {garage.address.state}({garage.address.country})<br /> 
+                                            email : {garage.email} <br /> </td>
                                     </tr>
                                 </tbody>
                             </table>

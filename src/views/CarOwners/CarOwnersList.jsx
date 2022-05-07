@@ -3,22 +3,31 @@ import { Link } from "react-router-dom"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import SearchBar from "../../components/SearchBar"
 import Spinner from "../../components/Spinner/Spinner"
-import { listCarOwners } from "../../services/CarOwnserService"
+import { useAuthContext } from "../../contexts/AuthContext"
+import { deleteCarOwner, listCarOwners } from "../../services/CarOwnserService"
 
 
 
 const CarOwnersList = () => {
 
     const [carOwners, setCarOwners] = useState(null)
+    const { garage, getGarage } = useAuthContext()
     const [filteredResults, setFilteredResults] = useState([]);
     const [search, setSearch] = useState("")
+
+    const handleDelete = (id) => {
+        deleteCarOwner(id)
+            .then(() => {
+                getGarage()
+            })
+    }
 
     useEffect(() => {
         listCarOwners()
             .then(response => {
                 setCarOwners(response)
             })
-    }, [])
+    }, [garage])
 
     const searchItems = (searchValue) => {
         setSearch(searchValue)
@@ -74,8 +83,12 @@ const CarOwnersList = () => {
                                                         <td>
                                                             <ul className="action-list">
                                                                 <Link to={`/carowners/${carOwner.id}`}><i className="fa-solid fa-info"></i></Link>
-                                                                <i className="fa fa-edit"></i>
-                                                                <a href="#" data-tip="delete"><i className="fa fa-trash"></i></a>
+                                                                <Link to={`/carowners/${carOwner.id}/edit`}><i className="fa fa-edit"></i></Link>
+                                                                <button className="btn "
+                                                                    onClick={() => handleDelete(carOwner.id)}>
+                                                                    <i className="fa-solid fa-trash"
+                                                                        style={{ color: "red", border: 'none' }}></i>
+                                                                </button>
                                                             </ul>
                                                         </td>
                                                     </tr>
@@ -92,8 +105,12 @@ const CarOwnersList = () => {
                                                         <td>
                                                             <ul className="action-list">
                                                                 <Link to={`/carowners/${carOwner.id}`}><i className="fa-solid fa-info"></i></Link>
-                                                                <i className="fa fa-edit"></i>
-                                                                <a href="#" data-tip="delete"><i className="fa fa-trash"></i></a>
+                                                                <Link to={`/carowners/${carOwner.id}/edit`}><i className="fa fa-edit"></i></Link>
+                                                                <button className="btn  "
+                                                                    onClick={() => handleDelete(carOwner.id)}>
+                                                                    <i className="fa-solid fa-trash"
+                                                                        style={{ color: "red", border: 'none' }}></i>
+                                                                </button>
                                                             </ul>
                                                         </td>
                                                     </tr>
@@ -113,6 +130,7 @@ const CarOwnersList = () => {
 }
 
 export default CarOwnersList
+
 
 
 
