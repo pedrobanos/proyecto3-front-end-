@@ -38,6 +38,7 @@ const MainMenu = () => {
                         <img src={carImage} style={{ height: 180, width: 300 }} className="card-img-top" alt=" " />
                     </div>
                     <DropDownMenu />
+                    <Link to='/login'><i className="fa-solid fa-xl fa-person-through-window"></i></Link>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-const InputComponent = ({ label, id, name, type, placeholder, register, error, icon, eye, onToggle}) => {
+const InputComponent = ({ label, id, name, type, placeholder, register, error, icon, eye, onToggle, multiple}) => {
   return (
     <div className="">
       {
@@ -14,6 +14,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
               id={id}
               placeholder={placeholder}
               {...register(name)}
+              multiple={multiple}
             /> {eye && 
               <div>
                 <span className="input-group-text">
@@ -37,6 +38,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
               id={id}
               placeholder={placeholder}
               {...register(name)}
+              multiple={multiple}
             />
             <p className="invalid-feedback mt-0">{error}</p>
           </div>

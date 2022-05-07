@@ -3,9 +3,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { getVehicle, listVehicles, register } from '../../services/VehicleServices';
+import { getVehicle } from '../../services/VehicleServices';
 import InputComponent from '../../components/InputComponent';
-import { register as registerNewOr } from '../../services/VehicleServices'
+import { register as registerNewOr } from '../../services/OrServices'
 import { Modal, Button } from 'react-bootstrap'
 import './Or.css'
 import { getCarOwner } from '../../services/CarOwnserService';
@@ -13,12 +13,12 @@ import { getCarOwner } from '../../services/CarOwnserService';
 
 
 const schema = yup.object({
-    //vehicle: yup.
     operation: yup.string("write the operation min 8 char").min(8),
     entryKms: yup.number().positive().required(),
     descriptionProblem: yup.string("Need a brief description min16 char").min(16),
     qty: yup.number().required(),
-    price: yup.number().required()
+    price: yup.number().required(),
+    discount: yup.number()
 
 }).required()
 
@@ -28,7 +28,6 @@ const Or = () => {
     const urlParams = new URLSearchParams(search);
     const vehicleInfo = urlParams.get('vehicle')
     const carOwnerInfo = urlParams.get('client')
-    //console.log(vehicleInfo)
     const [backErrors, setBackErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [carOwner, setCarOwner] = useState(null)
@@ -40,14 +39,24 @@ const Or = () => {
         resolver: yupResolver(schema),
         defaultValues: {
             vehicle: vehicleInfo
-            //carOwner: carOwnerInfo
         }
     })
 
     const onSubmit = data => {
+        data = { vehicle: vehicle.id, ...data };
+        const formData = new FormData();
+        const { damageFotos, ...fields } = data
+        Object.keys(fields).forEach(key => formData.append(key, data[key]))
+
+        if (data.damageFotos) {
+            for (var i = 0; i < data.damageFotos.length; i++) {
+                formData.append('damageFotos[]', data.damageFotos[i])
+            }
+        }
+
         setBackErrors({})
         setIsSubmitting(true)
-        registerNewOr(data)
+        registerNewOr(formData)
             .then((ors) => {
                 navigate('/profile')
             })
@@ -78,8 +87,7 @@ const Or = () => {
     return (
 
         <div className='container'>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
                 <h1 className='mt-3 mb-3'>NEW OR</h1>
                 {!vehicle && !carOwner ? (
                     <div className='OrContainer'>
@@ -177,6 +185,8 @@ const Or = () => {
                                 id="exampleFormControlTextarea1"
                                 rows="3"
                                 style={{ backgroundColor: "white" }}
+                                placeholder='min 10 char'
+                                {...register('descriptionProblem')}
                             >
                             </textarea>
                         </div>
@@ -190,6 +200,67 @@ const Or = () => {
                                 style={{ backgroundColor: "white" }}
                             >
                             </textarea>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="damageFotos"
+                                className="col col-form-label"
+                            >Photos:</label>
+                            <div className="col-sm-4">
+                                <InputComponent 
+                                    className="input-group"
+                                    id="damageFotos"
+                                    error={backErrors?.damageFotos || errors.damageFotos?.message}
+                                    placeholder="Add images"
+                                    name="damageFotos"
+                                    type="file"
+                                    multiple
+                                    register={register}
+                                    style={{ backgroundColor: "white" }}
+                                />
+                            </div> 
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword"
+                                className="col col-form-label"
+                            >Quantity:</label>
+                            <div className="col-sm-4">
+                                <InputComponent className="input-group"
+                                    id="qty"
+                                    error={backErrors?.qty || errors.qty?.message}
+                                    placeholder="Enter quantity"
+                                    name="qty"
+                                    type={'number'}
+                                    register={register}
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword"
+                                className="col col-form-label"
+                            >Price:</label>
+                            <div className="col-sm-4">
+                                <InputComponent className="input-group"
+                                    id="entryKms"
+                                    error={backErrors?.price || errors.price?.message}
+                                    placeholder="Enter a number"
+                                    name="price"
+                                    type={'number'}
+                                    register={register}
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword"
+                                className="col col-form-label"
+                            >discount:</label>
+                            <div className="col-sm-4">
+                                <InputComponent className="input-group"
+                                    id="discount"
+                                    name="discount"
+                                    type={'number'}
+                                    register={register}
+                                />
+                            </div>
                         </div>
                     </div>
                 )}
