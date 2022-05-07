@@ -28,7 +28,7 @@ const Or = () => {
     const navigate = useNavigate()
     const { search } = useLocation()
     const urlParams = new URLSearchParams(search);
-    const vehicleInfo = urlParams.get('vehicle')
+    // const vehicleInfo = urlParams.get('vehicle')
     const carOwnerInfo = urlParams.get('client')
 
     const [vehicleSearch, setVehicleSearch] = useState()
@@ -38,12 +38,18 @@ const Or = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [carOwner, setCarOwner] = useState(null)
     const [vehicle, setVehicle] = useState(null)
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {
-            vehicle: vehicleInfo
-        }
+        // defaultValues: {
+        //     vehicle: vehicleInfo
+        // }
     })
+
+    useEffect(() => {
+        if (vehicle && vehicle.id) {
+            setValue('vehicle', vehicle.id)
+        }
+    }, [vehicle])
 
     const vehiclePlate = urlParams.get('plate')
     const clientNif = urlParams.get('nif')
@@ -60,7 +66,7 @@ const Or = () => {
     // }
 
     const onSubmit = data => {
-        data = { vehicle: vehicle.id, ...data };
+        data = { vehicle, ...data };
         const formData = new FormData();
         const { damageFotos, ...fields } = data
         Object.keys(fields).forEach(key => formData.append(key, data[key]))
@@ -87,7 +93,7 @@ const Or = () => {
     return (
 
         <div className='container'>
-            <form onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className='mt-3 mb-3'>NEW OR</h1>
                 {!vehicle && !carOwner ? (
                     <div className='OrContainer'>
@@ -168,9 +174,9 @@ const Or = () => {
                             >
                             </textarea>
                         </div>
-                        <div class="mb-3 row">
+                        <div className="mb-3 row">
                             <label for="damageFotos"
-                                className="col col-form-label"
+                                NameName="col col-form-label"
                             >Photos:</label>
                             <div className="col-sm-4">
                                 <InputComponent 
@@ -186,7 +192,7 @@ const Or = () => {
                                 />
                             </div> 
                         </div>
-                        <div class="mb-3 row">
+                        <div className="mb-3 row">
                             <label for="inputPassword"
                                 className="col col-form-label"
                             >Quantity:</label>
@@ -201,7 +207,7 @@ const Or = () => {
                                 />
                             </div>
                         </div>
-                        <div class="mb-3 row">
+                        <div className="mb-3 row">
                             <label for="inputPassword"
                                 className="col col-form-label"
                             >Price:</label>
@@ -216,7 +222,7 @@ const Or = () => {
                                 />
                             </div>
                         </div>
-                        <div class="mb-3 row">
+                        <div className="mb-3 row">
                             <label for="inputPassword"
                                 className="col col-form-label"
                             >discount:</label>
