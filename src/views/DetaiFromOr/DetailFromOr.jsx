@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OrDetails } from '../../services/OrServices';
 import logo from "../../assets/full_width.png"
-import "./DetailFromOr.css"
 import { useAuthContext } from '../../contexts/AuthContext';
 import { getCurrentGarage } from '../../services/GarageService';
 
