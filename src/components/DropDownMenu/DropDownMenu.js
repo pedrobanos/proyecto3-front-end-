@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap'
 import './DropDownMenu.css'
+import { logout } from '../../store/AccessTokenStore'
 
 
 const DropDownMenu = () => {
@@ -12,19 +13,23 @@ const DropDownMenu = () => {
     setDropdown(!dropdown)
   }
   return (
-      <div className="dropdownContainer">
-        <Dropdown isOpen={dropdown} toggle={openCloseDrop} direction="up">
-          <DropdownToggle className="menuDropdown">
+    <div className="dropdownContainer">
+      <Dropdown isOpen={dropdown} toggle={openCloseDrop} direction="left">
+        <DropdownToggle className="menuDropdown">
           <i className="fa-solid fa-bars"></i>
-          </DropdownToggle>
-          <DropdownMenu className="listOfItems">
-            <DropdownItem onClick={() => navigate('/ors/new')} className="itemDropdownItem1">New Or</DropdownItem>
-            <DropdownItem onClick={() => navigate('/vehicles/new')}className="itemDropdownItem2">Add vehicle</DropdownItem>
-            <DropdownItem onClick={() => navigate('/ors')}className="itemDropdownItem2">Pending Or's</DropdownItem>
-            <DropdownItem onClick={() => navigate('/vehicles')}className="itemDropdownItem3">List of vehicles</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
+        </DropdownToggle>
+        <DropdownMenu className="listOfItems">
+          <div className="d-flex">
+            <DropdownItem onClick={() => navigate('/profile')} className="itemDropdownItem1"><i className="fa-solid fa-house"></i></DropdownItem>
+            <DropdownItem onClick={logout} className="itemDropdownItem2 text-center"><i className="fa-solid fa-arrow-right-from-bracket"></i></DropdownItem>
+          </div>
+          <DropdownItem onClick={() => navigate('/ors/new')} className="itemDropdownItem4">New Or</DropdownItem>
+          <DropdownItem onClick={() => navigate('/vehicles/new')} className="itemDropdownItem">Add vehicle</DropdownItem>
+          <DropdownItem onClick={() => navigate('/ors')} className="itemDropdownItem">Pending Or's</DropdownItem>
+          <DropdownItem onClick={() => navigate('/vehicles')} className="itemDropdownItem3">List of vehicles</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </div>
   );
 };
 

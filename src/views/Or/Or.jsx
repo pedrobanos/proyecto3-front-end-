@@ -237,7 +237,7 @@ const Or = () => {
                         </div>
                     </div>
                 )}
-                <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
+                <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
             </form>
             <DropDownMenu/>
         </div>

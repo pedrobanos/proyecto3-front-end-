@@ -43,7 +43,7 @@ const SearchCarOwnerModal = ({ setCarOwnerSearch }) => {
                                 value={nifOrNie}
                                 onChange={(e) => setNifOrNie(e.target.value)}
                             />
-                            <Button type="button" onClick={onSearch} variant="primary">Search</Button>
+                            <Button type="button" onClick={onSearch} variant="primary"><i className="fa-solid fa-magnifying-glass"></i></Button>
                         </div>
                         <div className='mt-4'>
                             {carOwner ? (
@@ -67,7 +67,7 @@ const SearchCarOwnerModal = ({ setCarOwnerSearch }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleSelect}>Select</Button>
+                    <Button variant="warning" onClick={handleSelect}>Select</Button>
                 </Modal.Footer>
             </Modal>
             <Button
