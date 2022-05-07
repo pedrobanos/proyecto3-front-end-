@@ -5,6 +5,7 @@ import { OrDetails } from '../../services/OrServices';
 import { getVehicle } from '../../services/VehicleServices';
 import logo from "../../assets/full_width.png"
 import "./DetailFromOr.css"
+import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
 
 const DetailFromOr = () => {
     const [or, setOr] = useState({})
@@ -125,6 +126,7 @@ const DetailFromOr = () => {
                     </div>
                 </div>
             </div>
+            <DropDownMenu/>
         </div>
 
     )

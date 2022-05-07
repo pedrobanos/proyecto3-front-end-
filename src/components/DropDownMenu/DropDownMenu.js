@@ -18,7 +18,7 @@ const DropDownMenu = () => {
           <i className="fa-solid fa-bars"></i>
           </DropdownToggle>
           <DropdownMenu className="listOfItems">
-            <DropdownItem onClick={() => navigate('/ors/new')} className="itemDropdownItem1">Or</DropdownItem>
+            <DropdownItem onClick={() => navigate('/ors/new')} className="itemDropdownItem1">New Or</DropdownItem>
             <DropdownItem onClick={() => navigate('/vehicles/new')}className="itemDropdownItem2">Add vehicle</DropdownItem>
             <DropdownItem onClick={() => navigate('/ors')}className="itemDropdownItem2">Pending Or's</DropdownItem>
             <DropdownItem onClick={() => navigate('/vehicles')}className="itemDropdownItem3">List of vehicles</DropdownItem>

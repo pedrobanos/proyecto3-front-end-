@@ -12,4 +12,5 @@ export const deletePost = (id) => http.delete(`/vehicles/${id}`)
 
 export const getVehicle =(id) => http.get(`/vehicles/${id}`)
 
+export const searchPlate = (id) => http.post(`/vehicles/search/${id}`)
 
