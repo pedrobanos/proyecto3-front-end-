@@ -44,12 +44,15 @@ const CarOwnersEdit = () => {
     
     
         const onSubmit = methods.handleSubmit((data)=> { 
+
             const { name, email, nifOrNie, phoneNumber, street, city, state, zipCode, country } 
                 = data
-            // if(!name || !email || !nifOrNie || !phoneNumber || !street || !city || !state || !zipCode || !country){
-            //     setErrors(true)
-            //     setIsSubmitting(true)
-            // } else {
+                
+            if(!name || !email || !nifOrNie || !phoneNumber || !street || !city || !state || !zipCode || !country){
+                setErrors(true)
+                setIsSubmitting(true)
+            } else {
+
                 updateCarOwner(carOwner.id, data)
                 .then((carOwner) => {
                     getGarage()
@@ -62,7 +65,7 @@ const CarOwnersEdit = () => {
                 .finally(() => {
                     setIsSubmitting(false)
                  })
-           // }   
+            }   
         })
     
         return (
