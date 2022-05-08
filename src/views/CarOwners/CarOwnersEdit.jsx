@@ -30,13 +30,13 @@ const CarOwnersEdit = () => {
                    email: carOwner.email,
                     nifOrNie: carOwner.nifOrNie,
                     phoneNumber: carOwner.phoneNumber,
-                    address:{
-                        street: carOwner.address.street,
-                        city: carOwner.address.city,
-                        zipCode: carOwner.address.zipCode,
-                        state: carOwner.address.state,
-                        country: carOwner.address.country
-                    }             
+                    // address:{
+                    //     street: carOwner.address.street,
+                    //     city: carOwner.address.city,
+                    //     zipCode: carOwner.address.zipCode,
+                    //     state: carOwner.address.state,
+                    //     country: carOwner.address.country
+                    // }             
                 })
               })
           }, [])
@@ -44,11 +44,16 @@ const CarOwnersEdit = () => {
     
     
         const onSubmit = methods.handleSubmit((data)=> { 
-
-            const { name, email, nifOrNie, phoneNumber, street, city, state, zipCode, country } 
+            
+            const { name, email, nifOrNie, phoneNumber, 
+                //street, city, state, zipCode, country 
+            } 
                 = data
                 
-            if(!name || !email || !nifOrNie || !phoneNumber || !street || !city || !state || !zipCode || !country){
+            if(!name || !email || !nifOrNie || !phoneNumber 
+               // || !street || !city || !state || !zipCode || !country
+                ){
+
                 setErrors(true)
                 setIsSubmitting(true)
             } else {
