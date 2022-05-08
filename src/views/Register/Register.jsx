@@ -96,7 +96,7 @@ const Register = () => {
                             id="password"
                             register={register}
                             error={backErrors?.password || errors.password?.message}
-                            type="new-password"
+                            type="password"
                             name="password"
                         />
                         <button

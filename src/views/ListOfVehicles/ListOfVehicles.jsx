@@ -7,12 +7,23 @@ import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
 import BackButton from "../../components/BackButton/BackButton"
 
+
 const ListOfVehicles = () => {
 
     const [vehicles, setVehicles] = useState(null)
     const { garage, getGarage } = useAuthContext()
     const [filteredResults, setFilteredResults] = useState([]);
     const [search, setSearch] = useState("")
+
+    // const [currentUser, setCurrentUser] = useState({})
+
+    // useEffect(() => {
+    //     getGarageDetail(id)
+    //       .then(garage => {
+    //         setCurrentUser(garage)
+    //       })
+    //   }, [])
+
 
     const handleDelete = (id) => {
         deleteVehicle(id)
