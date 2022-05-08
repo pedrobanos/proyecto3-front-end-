@@ -33,7 +33,7 @@ function App() {
           <Route path="/profile" element={<MainMenu />}></Route>
           <Route path="/carowners/new" element={<CarOwners />}></Route>
           <Route path="/carowners" element={<CarOwnersList/>}></Route>
-          <Route path="/carowners/:id/edit" element={<CarOwnersEdit/>}></Route>
+          <Route path="/carowners/:id" element={<CarOwnersEdit/>}></Route>
           <Route path="/vehicles/new" element={<Vehicles />}></Route>
           <Route path="/vehicles" element={<ListOfVehicles />}></Route>
           <Route path="/ors/new" element={<Or />}></Route>
