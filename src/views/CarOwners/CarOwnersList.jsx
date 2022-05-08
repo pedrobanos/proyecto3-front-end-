@@ -6,6 +6,7 @@ import SearchBar from "../../components/SearchBar"
 import Spinner from "../../components/Spinner/Spinner"
 import { useAuthContext } from "../../contexts/AuthContext"
 import { deleteCarOwner, listCarOwners } from "../../services/CarOwnserService"
+import './CarOwnersList.css'
 
 
 
@@ -42,12 +43,9 @@ const CarOwnersList = () => {
             setFilteredResults(carOwners)
         }
     }
-
-
-
     return (
         <div>
-            <h1 className="mt-4 mb-3 text-center text-decoration-underline">Client Data Base</h1>
+            <h1 className="mt-4 mb-3 text-center clientTitle">CLIENT DATA</h1>
             {!carOwners ? (
                 <Spinner />
             ) : (
@@ -82,8 +80,8 @@ const CarOwnersList = () => {
                                                         <td>{carOwner.address.city}</td>
                                                         <td>{carOwner.address.zipCode}</td>
                                                         <td>
-                                                            <ul className="action-list">
-                                                                <Link to={`/carowners/${carOwner.id}`}><i className="fa-solid fa-info"></i></Link>
+                                                            <ul className="action-list justify-content-center">
+                                                                <Link to={`/carowners/${carOwner.id}`}><i className="text-center fa-solid fa-info"></i></Link>
                                                                 <Link to={`/carowners/${carOwner.id}/edit`}><i className="fa fa-edit"></i></Link>
                                                                 <button className="btn "
                                                                     onClick={() => handleDelete(carOwner.id)}>
@@ -105,7 +103,6 @@ const CarOwnersList = () => {
                                                         <td>{carOwner.address.zipCode}</td>
                                                         <td>
                                                             <ul className="action-list">
-                                                                {/* <Link to={`/carowners/${carOwner.id}`}><i className="fa-solid fa-info"></i></Link> */}
                                                                 <Link to={`/carowners/${carOwner.id}/edit`}><i className="fa fa-edit"></i></Link>
                                                                 <button className="btn  "
                                                                     onClick={() => handleDelete(carOwner.id)}>
@@ -125,8 +122,10 @@ const CarOwnersList = () => {
                     </div>
                 </div>
             )}
-            <BackButton  customRoute={"profile"}/>
-            <DropDownMenu/>
+            <div className="mt-4">
+                <BackButton customRoute={"profile"} />
+                <DropDownMenu />
+            </div>
         </div>
     )
 }

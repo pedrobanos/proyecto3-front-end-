@@ -6,6 +6,7 @@ import SearchBar from "../../components/SearchBar"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
 import BackButton from "../../components/BackButton/BackButton"
+import './ListOfVehicles.css'
 
 const ListOfVehicles = () => {
 
@@ -45,12 +46,12 @@ const ListOfVehicles = () => {
 
     return (
         <div>
-            <h1 className="mt-4 mb-3 text-center text-decoration-underline">Vehicles Data Base</h1>
+            <h1 className="mt-4 mb-3 text-center" id="vehicleListTitle">VEHICLE DATA</h1>
             {!vehicles ? (
                 <Spinner />
             ) : (
                 <div className="panel">
-                    <SearchBar
+                    <SearchBar 
                         setSearch={searchItems}>
                     </SearchBar>
                     <table className="table">

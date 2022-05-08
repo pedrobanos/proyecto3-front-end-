@@ -68,7 +68,6 @@ const Vehicles = () => {
         }
     });
     const make = watch('make');
-    console.log({make});
     const model = watch('model');
     const navigate = useNavigate()
 
@@ -116,7 +115,7 @@ const Vehicles = () => {
 
     return (
         <div className="Vehicle text-start">
-            <h1 className="mt-4 mb-4">ADD CLIENT</h1>
+            <h1 className="mt-4 mb-4" id="clientTitle">ADD VEHICLE</h1>
             {carOwner ? (
                 <CreateCarOwnerComp
                     getMakeOptions={getMakeOptions}

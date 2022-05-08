@@ -8,8 +8,8 @@ const MainMenu = () => {
     return (
         <div className="container1">
             <div className="mt-3 mx-4 row text-center justify-content-center">
-                <h1 id="MainMenu">MENU</h1>
-                <div className="col positionMenu">
+                <h1 id="MainMenu" className="mt-2">HOME<i className="fa-solid fa-car-burst"></i></h1>
+                <div className="col positionMenu mt-4">
                     <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/ors/new">
                         <h5> NEW OR </h5>
                     </Link>

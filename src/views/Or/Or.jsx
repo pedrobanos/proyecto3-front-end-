@@ -3,12 +3,11 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { getVehicle, listVehicles, register, searchPlate } from '../../services/VehicleServices';
+import { searchPlate } from '../../services/VehicleServices';
 import InputComponent from '../../components/InputComponent';
 import { register as registerNewOr } from '../../services/OrServices'
-import { Modal, Button } from 'react-bootstrap'
 import './Or.css'
-import { getCarOwner, searchCarOwner } from '../../services/CarOwnserService';
+import { searchCarOwner } from '../../services/CarOwnserService';
 import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
 import ModalSearch from '../../components/ModalSearch/ModalSearch';
 import BackButton from '../../components/BackButton/BackButton';
@@ -36,9 +35,6 @@ const Or = () => {
     const [vehicle, setVehicle] = useState(null)
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(schema),
-        // defaultValues: {
-        //     vehicle: vehicleInfo
-        // }
     })
 
     useEffect(() => {
@@ -56,10 +52,6 @@ const Or = () => {
         clientNif && searchCarOwner(clientNif)
             .then((c) => setCarOwner(c)).catch(e => console.log(e))
     }, [vehiclePlate, clientNif])
-
-    // const completeFormStep = (data) => {
-    //     isValid && setFormStep(curr => curr + 1)
-    // }
 
     const onSubmit = data => {
         data = { vehicle, ...data };
@@ -90,7 +82,7 @@ const Or = () => {
 
         <div className='container'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className='mt-3 mb-3' id="newOrTitle">NEW OR</h1>
+                <h1 className='mt-3 mb-3 orTitle'>NEW OR</h1>
                 {!vehicle && !carOwner ? (
                     <div className='OrContainer'>
                         <div className='ClientContainer'>
@@ -155,7 +147,7 @@ const Or = () => {
                                 id="exampleFormControlTextarea1"
                                 rows="3"
                                 style={{ backgroundColor: "white" }}
-                                placeholder='min 10 char'
+                                placeholder='Describe the issue'
                                 {...register('descriptionProblem')}
                             >
                             </textarea>

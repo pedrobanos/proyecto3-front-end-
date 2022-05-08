@@ -4,6 +4,8 @@ import Spinner from "../../components/Spinner/Spinner"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { listOfOrs } from "../../services/OrServices"
 import { useAuthContext } from "../../contexts/AuthContext"
+import BackButton from "../../components/BackButton/BackButton"
+import "./Or.css"
 
 const PendingOrs = () => {
 
@@ -23,7 +25,7 @@ const PendingOrs = () => {
 
     return (
         <div className="justify-content-center">
-            <h1 className="mt-4 mb-3 text-center text-decoration-underline">Pending OR's</h1>
+            <h1 className="mt-4 mb-3 text-center orTitle">Pending OR's</h1>
             {!ors ? (
                 <Spinner />
             ) : (
@@ -57,6 +59,7 @@ const PendingOrs = () => {
                     </table>
                 </div>
             )}
+            <BackButton  customRoute={"profile"}/>
             <DropDownMenu />
         </div >
     )

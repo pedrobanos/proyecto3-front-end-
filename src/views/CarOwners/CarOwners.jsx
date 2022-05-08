@@ -9,21 +9,22 @@ import { useNavigate } from 'react-router-dom';
 import { register as registerNewOwner } from '../../services/CarOwnserService'
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu";
 import BackButton from "../../components/BackButton/BackButton";
+import './CarOwnersList.css'
 
 
 
 const schema = yup.object({
     name: yup.string().required('Please enter a name'),
-    nifOrNie: yup.string().required('Nif is a required field').matches(/^(\d{8})([A-Z])$/,'Invalid cif form'),
+    nifOrNie: yup.string().required('Nif is a required field').matches(/^(\d{8})([A-Z])$/, 'Invalid cif form'),
     email: yup.string().email().required('Email is a required field'),
     address: yup.object({
         street: yup.string().required('Street is a required field'),
         state: yup.string().required('State is a required field'),
         city: yup.string().required('City is a required field'),
-        zipCode: yup.string().required('Zip code is a required field').matches(/^\d{5}(?:[- ]?\d{4})?$/,'Invalid zipcode form'),
+        zipCode: yup.string().required('Zip code is a required field').matches(/^\d{5}(?:[- ]?\d{4})?$/, 'Invalid zipcode form'),
         country: yup.string().required('Country is a required field')
     }).required(),
-    phoneNumber: yup.string().required('Phone number is a required field').matches(/^\+?([6-9]\d{2}|7[1-9]\d{1})\d{6}$/,'Invalid phone form')
+    phoneNumber: yup.string().required('Phone number is a required field').matches(/^\+?([6-9]\d{2}|7[1-9]\d{1})\d{6}$/, 'Invalid phone form')
 }).required()
 
 const CarOwners = () => {
@@ -36,14 +37,13 @@ const CarOwners = () => {
     });
 
 
-    const onSubmit = data => { 
-         setBackErrors({})
-         setIsSubmitting(true)
+    const onSubmit = data => {
+        setBackErrors({})
+        setIsSubmitting(true)
 
-         registerNewOwner(data)
+        registerNewOwner(data)
             .then((carOwner) => {
                 navigate(`/vehicles/new?client=${carOwner._id}`)
-                console.log(carOwner._id);
             })
             .catch(err => {
                 setBackErrors(err?.response?.data?.errors)
@@ -55,7 +55,7 @@ const CarOwners = () => {
 
     return (
         <div className="container">
-            <h1 className="mt-4 mb-3">New Client: </h1>
+            <h1 className="mt-4 mb-3 clientTitle">NEW CLIENT </h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputComponent
                     label="Name"
@@ -82,35 +82,35 @@ const CarOwners = () => {
                     name="email"
                 />
                 <InputComponent
-                    label="Calle"
+                    label="Street"
                     id="street"
                     register={register}
                     name="address.street"
                     error={backErrors?.address?.street || errors.address?.street?.message}
                 />
                 <InputComponent
-                    label="Ciudad"
-                    id="city"
-                    register={register}
-                    name="address.city"
-                    error={backErrors?.address?.city || errors.address?.city?.message}
-                />
-                <InputComponent
-                    label="Provincia"
-                    id="state"
-                    register={register}
-                    name="address.state"
-                    error={backErrors?.address?.state || errors.address?.state?.message}
-                />
-                <InputComponent
-                    label="Código Postal"
+                    label="Zip code"
                     id="zipCode"
                     register={register}
                     name="address.zipCode"
                     error={backErrors?.address?.zipCode || errors.address?.zipCode?.message}
                 />
                 <InputComponent
-                    label="País"
+                    label="City"
+                    id="city"
+                    register={register}
+                    name="address.city"
+                    error={backErrors?.address?.city || errors.address?.city?.message}
+                />
+                <InputComponent
+                    label="State"
+                    id="state"
+                    register={register}
+                    name="address.state"
+                    error={backErrors?.address?.state || errors.address?.state?.message}
+                />
+                <InputComponent
+                    label="Country"
                     id="country"
                     register={register}
                     name="address.country"
@@ -123,10 +123,10 @@ const CarOwners = () => {
                     error={backErrors?.phoneNumber || errors.phoneNumber?.message}
                     name="phoneNumber"
                 />
-                <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating company...' : 'Submit'}</button>
+                <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating client...' : 'Next'}</button>
             </form>
-            <BackButton  customRoute={"vehicles/new"} />
-            <DropDownMenu/>
+            <BackButton customRoute={"vehicles/new"} />
+            <DropDownMenu />
         </div>
     )
 }

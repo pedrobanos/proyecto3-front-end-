@@ -13,5 +13,12 @@ select.form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
 } */
+#clientTitle{
+  padding-bottom: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffc107;
+  text-shadow: 0 0 2px black;
+}
 
 
