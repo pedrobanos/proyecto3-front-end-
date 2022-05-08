@@ -100,7 +100,8 @@ const Register = () => {
                             name="password"
                         />
                         <button
-                            className="btn btn-secondary btn-sm mt-3"
+
+                            className="btn-warning btn rounded-pill mt-4 mb-4"
                             onClick={completeFormStep}
                             type="submit"
                         >
@@ -144,13 +145,13 @@ const Register = () => {
                             error={backErrors?.address?.country || errors.address?.country?.message}
                         />
                         <button
-                            className="btn btn-secondary mt-3 me-4 mb-4 btn-sm"
+                            className="btn-warning btn rounded-pill mt-4 mb-4 me-4"
                             onClick={backButton}
                             type="button"
                         >
                             Back</button>
                         <button
-                            className="btn btn-secondary mt-3 mb-4 btn-sm"
+                            className="btn-warning btn rounded-pill mt-4 mb-4"
                             onClick={completeFormStep}
                             type="submit"
                         >
@@ -189,14 +190,13 @@ const Register = () => {
                             name="fax"
                         />
                         <button
-                            className="btn btn-secondary mt-3 me-4 btn-sm"
+                            className="btn-warning btn rounded-pill mt-4 mb-4 me-4"
                             onClick={backButton}
                             type="button"
                         >
                             Back </button>
                         <button onClick={handleSubmit(onSubmit)}
-                            className={`btn btn-${isSubmitting ? 'secondary' : 'secondary'} mt-3 btn-sm`}>
-                            {isSubmitting ? 'Creating company...' : 'Submit'}
+                            className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}
                         </button>
                     </section>)}
             </form>

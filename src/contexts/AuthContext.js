@@ -15,7 +15,6 @@ export const AuthContextProvider = ({ children }) => {
     const [isAuthenticationFetched, setIsAuthenticationFetched] = useState(false)
 
     const login = (token, navigateCb) => {
-        console.log(token);
         setToken(token)
         getGarage(navigateCb)
 

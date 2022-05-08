@@ -1,19 +1,18 @@
 import { useState } from "react"
 import React from 'react'
-import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
 import SearchCarOwnerModal from '../SearchCarOwnerModal/SearchCarOwnerModal';
 import InputComponent from "../InputComponent";
 
 const SearchClientComp = ({ carOwnerSearch, setCarOwnerSearch, makes, getMakeOptions, getCompanyInsurance, getModelOptions, models, backErrors, handleSubmit, onSubmit, errors, register }) => {
 
-    // const { register, handleSubmit, formState: { errors }, watch } = useForm();
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     return (
         <div>
             <div className='ClientContainer'>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <h6 style={{fontWeight: "bold"}} className="mb-4">STEP 1: Create/Search a client</h6>
                     {carOwnerSearch ? (
                         <div>
                             <p>Name: {carOwnerSearch.name}</p>
@@ -25,9 +24,9 @@ const SearchClientComp = ({ carOwnerSearch, setCarOwnerSearch, makes, getMakeOpt
                         </div>
 
                     ) : (
-                        <div>
-                            <p>Name: ______________________________  </p>
-                            <p>Phone Number:_______________________ </p>
+                        <div className="pt-2 mx-2 pb-4">
+                            <p>Name: _____________________________________________  </p>
+                            <p>Phone Number: _____________________________________________ </p>
 
                             <SearchCarOwnerModal setCarOwnerSearch={setCarOwnerSearch} />
                             <Link className='mx-3' to={'/carowners/new'} style={{ textDecoration: 'none' }} >

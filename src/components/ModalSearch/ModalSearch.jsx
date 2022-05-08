@@ -58,10 +58,6 @@ const ModalSearch = ({ setVehicleSearch }) => {
                     </form>
 
                 </Modal.Header>
-                <Modal.Body>
-                    I will not close if you click outside me. Don't even try to press
-                    escape key.
-                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close

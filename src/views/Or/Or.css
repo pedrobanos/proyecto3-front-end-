@@ -13,7 +13,7 @@ select.form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
 }  */
-#newOrTitle{
+.orTitle{
   padding-bottom: 10px;
   font-size: 40px;
   font-weight: bold;
