@@ -12,7 +12,7 @@ const SearchClientComp = ({ carOwnerSearch, setCarOwnerSearch, makes, getMakeOpt
         <div>
             <div className='ClientContainer'>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <h6 style={{fontWeight: "bold"}} className="mb-4">STEP 1: Create/Search a client</h6>
+                    <h6 style={{ fontWeight: "bold" }} className="mb-4">STEP 1: Create/Search a client</h6>
                     {carOwnerSearch ? (
                         <div>
                             <p>Name: {carOwnerSearch.name}</p>
@@ -36,9 +36,8 @@ const SearchClientComp = ({ carOwnerSearch, setCarOwnerSearch, makes, getMakeOpt
                     )}
                     {carOwnerSearch ? (
                         <div>
-                            <h1>CREATE A VEHICLE</h1>
-
-                            <h4 className="mt-4">Vehicle data</h4>
+                            <hr></hr>
+                            <h6 style={{ fontWeight: "bold" }} className="mt-4">STEP 2: Create a new car</h6>
                             <InputComponent className="input-group mt-4"
                                 id="plate"
                                 error={backErrors?.plate || errors.plate?.message}
@@ -91,9 +90,10 @@ const SearchClientComp = ({ carOwnerSearch, setCarOwnerSearch, makes, getMakeOpt
                                     </option>
                                 ))}
                             </select>
-                            <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
+                            <div className="d-flex justify-content-center">
+                                <button type="submit" className={`mt-4 col-3 btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Next'}</button>
+                            </div>
                         </div>
-
                     ) : (
                         <></>
                     )}
