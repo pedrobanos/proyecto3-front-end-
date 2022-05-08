@@ -1,11 +1,42 @@
+
 .AccountText {
     font-size: 12px;
     text-align: center;
     /* display: flex; */
 }
-
 .CreateAcount {
     display: flex;
+    position: fixed;
+    bottom: 30px;
     justify-content: center;
 
+}
+.lineLogin {
+    position: fixed;
+    bottom: 60px;
+    color: black;
+}
+#eyeIcon{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #ffc107;
+}
+#cif1{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.cifImputGroup{
+    margin-top: 50px !important;
+}
+.passwordImputGroup{
+    margin-top: 50px !important;
+}
+
+#inputGroup-sizing-default{
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    color: #ffc107;
+}
+svg{
+fill: #ffc107;
 }

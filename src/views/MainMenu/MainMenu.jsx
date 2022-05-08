@@ -5,12 +5,11 @@ import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 
 
 const MainMenu = () => {
-
     return (
-        <div className="container">
+        <div className="container1">
             <div className="mt-3 mx-4 row text-center justify-content-center">
-                <h1 className="text-decoration-underline">Main Menu</h1>
-                <div className="col">
+                <h1 id="MainMenu">MENU</h1>
+                <div className="col positionMenu">
                     <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/ors/new">
                         <h5> NEW OR </h5>
                     </Link>
@@ -35,10 +34,9 @@ const MainMenu = () => {
                     </Link>
                     </div>
                     <div className="mt-5">
-                        <img src={carImage} style={{ height: 180, width: 300 }} className="card-img-top" alt=" " />
+                        <img src={carImage} style={{ height: 270, width: 300 }} className="card-img-top" alt=" " />
                     </div>
                     <DropDownMenu />
-                    <Link to='/login'><i className="fa-solid fa-xl fa-person-through-window"></i></Link>
                 </div>
             </div>
         </div>

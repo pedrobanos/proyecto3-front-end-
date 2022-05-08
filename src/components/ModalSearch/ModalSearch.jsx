@@ -43,7 +43,7 @@ const ModalSearch = ({ setVehicleSearch }) => {
                                 value={plate}
                                 onChange={(e) => setPlate(e.target.value)}
                             />
-                            <Button type="button" onClick={onSearch} variant="primary">Search</Button>
+                            <Button type="button" onClick={onSearch} variant="primary"><i className="fa-solid fa-magnifying-glass"></i></Button>
                         </div>
                         <div className='mt-2'>
                             {vehicle ? (

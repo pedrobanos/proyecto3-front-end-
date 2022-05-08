@@ -1,38 +1,50 @@
-.dropdownContainer{
+.dropdownContainer {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  
 }
-.menuDropdown{
-  background-color: black !important;
+
+.menuDropdown {
+  background-color: #ffc107 !important;
   border-radius: 100% !important;
-  height: 50px;
-  width: 50px;
+  border: 1px solid black !important;
+  height: 60px;
+  width: 60px;
 }
+
 .dropdown-menu {
   padding: 0 !important;
 }
 
-.listOfItems{
-  background-color: yellow !important;
-border-radius: 25px !important;
+.listOfItems {
+  background-color: #ffc107 !important;
+  border-radius: 25px !important;
 
 }
-.itemDropdownItem1{
+.itemsDropGroup{
   border-top-right-radius: 25px !important;
   border-top-left-radius: 25px !important;
-}
-.itemDropdownItem2{
 
 }
-.itemDropdownItem3{
+.itemDropdownItem1 {
+  border-top-left-radius: 25px !important;
+}
+
+.itemDropdownItem2 {
+  border-left: 1px solid #000 !important;
+
+}
+
+.itemDropdownItem3 {
   border-bottom-right-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
 }
-
+.itemDropdownItem4 {
+  border-top: 1px solid #000 !important;
+}
 .dropdown-item {
   height: 55px;
- 
 }
 
 .dropdown-item:not(:last-child) {

@@ -5,6 +5,7 @@ import { deleteVehicle, listVehicles } from "../../services/VehicleServices"
 import SearchBar from "../../components/SearchBar"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
+import BackButton from "../../components/BackButton/BackButton"
 
 const ListOfVehicles = () => {
 
@@ -106,6 +107,7 @@ const ListOfVehicles = () => {
                     </table>
                 </div>
             )}
+            <BackButton customRoute={"profile"}/>
             <DropDownMenu/>
         </div >
     )

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import BackButton from "../../components/BackButton/BackButton"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import SearchBar from "../../components/SearchBar"
 import Spinner from "../../components/Spinner/Spinner"
@@ -124,6 +125,7 @@ const CarOwnersList = () => {
                     </div>
                 </div>
             )}
+            <BackButton  customRoute={"profile"}/>
             <DropDownMenu/>
         </div>
     )
