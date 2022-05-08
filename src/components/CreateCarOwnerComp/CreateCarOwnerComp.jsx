@@ -49,7 +49,6 @@ const CreateCarOwnerComp = ({getMakeOptions, getModelOptions, getCompanyInsuranc
                         <Spinner />
                     ) : (
                         <div>
-                            <h1>CREATE A VEHICLE</h1>
                             <select
                                 className="form-select bg-light mt-4 "
                                 arial-label="default input example"
@@ -90,7 +89,7 @@ const CreateCarOwnerComp = ({getMakeOptions, getModelOptions, getCompanyInsuranc
                             </option>
                         ))}
                     </select>
-                    <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
+                    <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
                 </form>
         </div>
     );

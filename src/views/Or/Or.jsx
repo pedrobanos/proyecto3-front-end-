@@ -11,6 +11,7 @@ import './Or.css'
 import { getCarOwner, searchCarOwner } from '../../services/CarOwnserService';
 import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
 import ModalSearch from '../../components/ModalSearch/ModalSearch';
+import BackButton from '../../components/BackButton/BackButton';
 
 
 
@@ -57,7 +58,7 @@ const Or = () => {
     useEffect(() => {
         vehiclePlate && searchPlate(vehiclePlate)
             .then((v) => setVehicle(v)).catch(e => console.log(e))
-            clientNif && searchCarOwner(clientNif)
+        clientNif && searchCarOwner(clientNif)
             .then((c) => setCarOwner(c)).catch(e => console.log(e))
     }, [vehiclePlate, clientNif])
 
@@ -94,14 +95,14 @@ const Or = () => {
 
         <div className='container'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className='mt-3 mb-3'>NEW OR</h1>
+                <h1 className='mt-3 mb-3' id="newOrTitle">NEW OR</h1>
                 {!vehicle && !carOwner ? (
                     <div className='OrContainer'>
                         <div className='ClientContainer'>
                             <p>Name: </p>
                             <p>Phone Number: </p>
                         </div>
-                        <hr />
+                        <hr className='line' />
                         <div className='VehicleContainer'>
                             <p>Plate: {vehicleSearch?.plate}</p>
 
@@ -110,15 +111,16 @@ const Or = () => {
                             <Link className='mx-3' to={'/vehicles/new'} style={{ textDecoration: 'none' }} >
                                 <i style={{ color: 'black' }} className="fa-solid fa-plus"></i>
                             </Link>
-
+                            {vehicleSearch && (
+                                <div>
+                                    <hr></hr>
+                                    <p>VIN: {vehicleSearch?.vin}</p>
+                                    <p>Make: {vehicleSearch?.make}</p>
+                                    <p>Model: {vehicleSearch?.model}</p>
+                                </div>
+                            )}
                             <hr></hr>
-                            <p>VIN: {vehicleSearch?.vin}</p>
-                            <p>Make: {vehicleSearch?.make}</p>
-                            <p>Model: {vehicleSearch?.model}</p>
                         </div>
-                        <p>kms:</p>
-                        <p>brief description of the issue:</p>
-                        <p>operation:</p>
                     </div >
                 ) : (
                     <div>
@@ -175,11 +177,11 @@ const Or = () => {
                             </textarea>
                         </div>
                         <div className="mb-3 row">
-                            <label for="damageFotos"
-                                NameName="col col-form-label"
+                            <label htmlFor="damageFotos"
+                                className="col col-form-label"
                             >Photos:</label>
                             <div className="col-sm-4">
-                                <InputComponent 
+                                <InputComponent
                                     className="input-group"
                                     id="damageFotos"
                                     error={backErrors?.damageFotos || errors.damageFotos?.message}
@@ -190,10 +192,10 @@ const Or = () => {
                                     register={register}
                                     style={{ backgroundColor: "white" }}
                                 />
-                            </div> 
+                            </div>
                         </div>
                         <div className="mb-3 row">
-                            <label for="inputPassword"
+                            <label htmlFor="inputPassword"
                                 className="col col-form-label"
                             >Quantity:</label>
                             <div className="col-sm-4">
@@ -207,39 +209,43 @@ const Or = () => {
                                 />
                             </div>
                         </div>
-                        <div className="mb-3 row">
-                            <label for="inputPassword"
-                                className="col col-form-label"
-                            >Price:</label>
-                            <div className="col-sm-4">
-                                <InputComponent className="input-group"
-                                    id="entryKms"
-                                    error={backErrors?.price || errors.price?.message}
-                                    placeholder="Enter a number"
-                                    name="price"
-                                    type={'number'}
-                                    register={register}
-                                />
+                        <div className='d-flex'>
+                            <div className="mb-3 row">
+                                <label htmlFor="inputPassword"
+                                    className="col col-form-label"
+                                >Price:</label>
+                                <div className="col-sm-4">
+                                    <InputComponent className="input-group"
+                                        id="entryKms"
+                                        error={backErrors?.price || errors.price?.message}
+                                        placeholder="€"
+                                        name="price"
+                                        type={'number'}
+                                        register={register}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="mb-3 row">
-                            <label for="inputPassword"
-                                className="col col-form-label"
-                            >discount:</label>
-                            <div className="col-sm-4">
-                                <InputComponent className="input-group"
-                                    id="discount"
-                                    name="discount"
-                                    type={'number'}
-                                    register={register}
-                                />
+                            <div className="mb-3 col-4 row">
+                                <label htmlFor="inputPassword"
+                                    className="col col-form-label"
+                                >Discount:</label>
+                                <div className="col-sm-4">
+                                    <InputComponent className="input-group"
+                                        id="discount"
+                                        name="discount"
+                                        placeholder="%"
+                                        type={'number'}
+                                        register={register}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
                 )}
-                <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
+                <button type="submit" className={`col-4 buttonEditOr mt-4 btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
             </form>
-            <DropDownMenu/>
+            <BackButton customRoute={"profile"} />
+            <DropDownMenu />
         </div>
     )
 }

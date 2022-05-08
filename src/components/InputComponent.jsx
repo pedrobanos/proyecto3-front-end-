@@ -23,7 +23,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
             <p className="invalid-feedback">{error}</p>
           </div>
         ) : (
-          <div className="mt-">
+          <>
             <label htmlFor={id} className="form-label mb-0">
               {label}
             </label>
@@ -37,7 +37,7 @@ const InputComponent = ({ label, id, name, type, placeholder, register, error, i
               multiple={multiple}
             />
             <p className="invalid-feedback mt-0">{error}</p>
-          </div>
+          </>
         )
       }
     </div>

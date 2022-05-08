@@ -13,6 +13,7 @@ import './Vehicles.css'
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import CreateCarOwnerComp from "../../components/CreateCarOwnerComp/CreateCarOwnerComp"
 import SearchClientComp from "../../components/SearchClientComp/SearchClientComp"
+import BackButton from "../../components/BackButton/BackButton"
 
 
 const schema = yup.object({
@@ -81,7 +82,7 @@ const Vehicles = () => {
         setIsSubmitting(true)
         registerRequest(data)
             .then((vehicle) => {
-                navigate(`/ors/new?plate=${vehicle.plate}&nif=${carOwner.nifOrNie}`)
+                navigate(`/ors/new?plate=${vehicle.plate}&nif=${carOwner?.nifOrNie}`)
                 console.log(vehicle._id); ///
             })
             .catch(err => {
@@ -156,6 +157,7 @@ const Vehicles = () => {
                     />
                 </div >
             )}
+            <BackButton  customRoute={"profile"}/>
             <DropDownMenu />
         </div>
     )
