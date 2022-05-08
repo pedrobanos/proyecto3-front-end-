@@ -30,14 +30,15 @@ const CarOwnersEdit = () => {
                    email: carOwner.email,
                     nifOrNie: carOwner.nifOrNie,
                     phoneNumber: carOwner.phoneNumber,
-                    // address:{
-                    //     street: carOwner.address.street,
-                    //     city: carOwner.address.city,
-                    //     zipCode: carOwner.address.zipCode,
-                    //     state: carOwner.address.state,
-                    //     country: carOwner.address.country
-                    // }             
+                    address:{
+                        street: carOwner.address.street,
+                        city: carOwner.address.city,
+                        zipCode: carOwner.address.zipCode,
+                        state: carOwner.address.state,
+                        country: carOwner.address.country
+                    }             
                 })
+                console.log(carOwner)
               })
           }, [])
         
@@ -46,14 +47,12 @@ const CarOwnersEdit = () => {
         const onSubmit = methods.handleSubmit((data)=> { 
             
             const { name, email, nifOrNie, phoneNumber, 
-                //street, city, state, zipCode, country 
+                street, city, state, zipCode, country 
             } 
                 = data
+                console.log(data);
                 
-            if(!name || !email || !nifOrNie || !phoneNumber 
-               // || !street || !city || !state || !zipCode || !country
-                ){
-
+            if(!name || !email || !nifOrNie || !phoneNumber){
                 setErrors(true)
                 setIsSubmitting(true)
             } else {
@@ -66,6 +65,7 @@ const CarOwnersEdit = () => {
                 })
                 .catch(err => {
                     setErrors(err?.response?.data?.errors)
+                    console.log(err?.response?.data?.errors)
                 })
                 .finally(() => {
                     setIsSubmitting(false)

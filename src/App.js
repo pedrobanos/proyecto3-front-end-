@@ -13,6 +13,7 @@ import DetailFromOr from "./views/DetaiFromOr/DetailFromOr";
 import CarOwnersList from "./views/CarOwners/CarOwnersList";
 import PendingOrs from "./views/Or/PendingOrs";
 import CarOwnersEdit from "./views/CarOwners/CarOwnersEdit";
+import EditVehicleList from "./views/ListOfVehicles/EditVehicleList";
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/carowners/:id" element={<CarOwnersEdit/>}></Route>
           <Route path="/vehicles/new" element={<Vehicles />}></Route>
           <Route path="/vehicles" element={<ListOfVehicles />}></Route>
+          <Route path="/vehicles/:id" element={<EditVehicleList />}></Route>
           <Route path="/ors/new" element={<Or />}></Route>
           <Route path="/ors" element={<PendingOrs/>} ></Route> 
           <Route path="/ors/:id" element={<DetailFromOr/>}></Route>
@@ -48,3 +50,4 @@ function App() {
 }
 
 export default App;
+

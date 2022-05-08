@@ -6,7 +6,7 @@ export const register = (data) => http.post('/vehicles/new', data)
 
 export const listVehicles = () => http.get('/vehicles')
 
-export const updateVehicle = (id, data) => http.patch(`/vehicles/${id}`, data)
+export const updateVehicle = (id, data) => http.put(`/vehicles/${id}`, data)
 
 export const deleteVehicle = (id) => http.delete(`/vehicles/${id}`)
 

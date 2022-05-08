@@ -6,7 +6,6 @@ import SearchBar from "../../components/SearchBar"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
 import BackButton from "../../components/BackButton/BackButton"
-import './ListOfVehicles.css'
 
 
 const ListOfVehicles = () => {
@@ -103,7 +102,7 @@ const ListOfVehicles = () => {
                                         <td>{vehicle.model}</td>
                                         <td>{vehicle?.carOwner?.name}</td>
                                         <td>{vehicle?.carOwner?.phoneNumber}</td>
-                                        <Link to={`/vehicles/${vehicle.id}/edit`}>
+                                        <Link to={`/vehicles/${vehicle.id}`}>
                                             <i className="fa-solid fa-pen-to-square"></i>
                                         </Link>
                                         <button className="btn " 
