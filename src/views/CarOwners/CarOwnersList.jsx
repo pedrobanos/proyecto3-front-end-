@@ -103,7 +103,7 @@ const CarOwnersList = () => {
                                                         <td>{carOwner.address.zipCode}</td>
                                                         <td>
                                                             <ul className="action-list">
-                                                                <Link to={`/carowners/${carOwner.id}/edit`}><i className="fa fa-edit"></i></Link>
+                                                                <Link to={`/carowners/${carOwner.id}`}><i className="fa fa-edit"></i></Link>
                                                                 <button className="btn  "
                                                                     onClick={() => handleDelete(carOwner.id)}>
                                                                     <i className="fa-solid fa-trash"
