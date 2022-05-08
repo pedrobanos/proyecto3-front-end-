@@ -10,6 +10,6 @@ export const getCarOwner =(id) => http.get(`/carowners/${id}`)
 
 export const searchCarOwner = (id) => http.post(`/carowners/search/${id}`)
 
-export const updateCarOwner = (id, data) => http.patch(`/carowners/${id}`, data)
+export const updateCarOwner = (id, data) => http.put(`/carowners/${id}`, data)
 
 export const deleteCarOwner = (id) => http.delete(`/carowners/${id}`)
