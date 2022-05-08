@@ -28,12 +28,7 @@ const Or = () => {
     const navigate = useNavigate()
     const { search } = useLocation()
     const urlParams = new URLSearchParams(search);
-    // const vehicleInfo = urlParams.get('vehicle')
-    const carOwnerInfo = urlParams.get('client')
-
     const [vehicleSearch, setVehicleSearch] = useState()
-
-    const [formStep, setFormStep] = useState(0)
     const [backErrors, setBackErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [carOwner, setCarOwner] = useState(null)
@@ -98,7 +93,7 @@ const Or = () => {
                 {!vehicle && !carOwner ? (
                     <div className='OrContainer'>
                         <div className='ClientContainer'>
-                            <p>Name: </p>
+                            <p>Name: {carOwner?.name}</p>
                             <p>Phone Number: </p>
                         </div>
                         <hr />

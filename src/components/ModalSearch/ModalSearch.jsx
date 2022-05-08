@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { Modal, Button } from 'react-bootstrap'
-import InputComponent from '../../components/InputComponent';
 import { searchPlate } from '../../services/VehicleServices';
 
 

@@ -11,6 +11,8 @@ import Register from "./views/Register/Register";
 import Vehicles from "./views/Vehicles/Vehicles";
 import DetailFromOr from "./views/DetaiFromOr/DetailFromOr";
 import CarOwnersList from "./views/CarOwners/CarOwnersList";
+import PendingOrs from "./views/Or/PendingOrs";
+import CarOwnersEdit from "./views/CarOwners/CarOwnersEdit";
 
 
 
@@ -29,12 +31,14 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/profile" element={<MainMenu />}></Route>
-          <Route path="/ors/new" element={<Or />}></Route>
-          <Route path="/ors/:id" element={<DetailFromOr/>}></Route>
-          <Route path="/vehicles/new" element={<Vehicles />}></Route>
-          <Route path="/vehicles" element={<ListOfVehicles />}></Route>
           <Route path="/carowners/new" element={<CarOwners />}></Route>
           <Route path="/carowners" element={<CarOwnersList/>}></Route>
+          <Route path="/carowners/:id/edit" element={<CarOwnersEdit/>}></Route>
+          <Route path="/vehicles/new" element={<Vehicles />}></Route>
+          <Route path="/vehicles" element={<ListOfVehicles />}></Route>
+          <Route path="/ors/new" element={<Or />}></Route>
+          <Route path="/ors" element={<PendingOrs/>} ></Route> 
+          <Route path="/ors/:id" element={<DetailFromOr/>}></Route>
         </Route>
       </Routes>
         )}

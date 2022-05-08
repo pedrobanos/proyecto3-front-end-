@@ -34,11 +34,9 @@ const DetailFromOr = () => {
 
         < div className="container mt-5 mb-3" >
             <div className="row d-flex justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
                         <div className="d-flex flex-row p-2 mt-2"> <img src={logo} style={{width:100, height:100}} />
                             <div className="d-flex flex-column mx-5"> <h1 className="font-weight-bold">Repair Budget</h1> 
-                            <small>Nº: {or.id}</small> 
+                            <small>Budget Nº: {or?.id?.slice(0,-16)}</small> 
                             <small>Entry Date: {new Date(or.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }</small>
                             <small>Entry kms: {or.entryKms}kms</small> 
                             </div>
@@ -72,7 +70,7 @@ const DetailFromOr = () => {
                                 <tbody>
                                     <tr className="add">
                                         {or?.damageFotos?.map((damageFoto,i) => (
-                                            <td key={i}><img src={damageFoto} style={{width:125, height:100}}></img></td>
+                                            <td key={i}><img src={damageFoto} style={{width:300, height:150}}></img></td>
                                         ))}
                                     </tr>
                                 </tbody>
@@ -127,21 +125,19 @@ const DetailFromOr = () => {
                             <table className="table table-borderless">
                                 <tbody>
                                     <tr className="add">
-                                        <td>{garage.bussinesName}</td>
+                                        <td>{garage?.bussinesName}</td>
                                     </tr>
                                     <tr className="content">
-                                        <td> CIF : {garage.cif} <br /> 
-                                            Address : {garage.address.street} <br /> 
-                                            {garage.address.zipCode},{garage.address.city}<br /> 
-                                            {garage.address.state}({garage.address.country})<br /> 
-                                            email : {garage.email} <br /> </td>
+                                        <td> CIF : {garage?.cif} <br /> 
+                                            Address : {garage?.address?.street} <br /> 
+                                            {garage?.address?.zipCode},{garage?.address?.city}<br /> 
+                                            {garage?.address?.state}({garage?.address?.country})<br /> 
+                                            email : {garage?.email} <br /> </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
             <DropDownMenu/>
         </div>
 

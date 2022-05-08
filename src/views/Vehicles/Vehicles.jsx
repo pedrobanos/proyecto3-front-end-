@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react"
 import { getMakes, getModels } from "../../services/RoutesServices"
 import React from 'react'
-import InputComponent from "../../components/InputComponent"
-import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form"
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { register as registerRequest } from '../../services/VehicleServices'
-import Spinner from "../../components/Spinner/Spinner"
 import { getCarOwner } from "../../services/CarOwnserService"
 import './Vehicles.css'
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
@@ -74,7 +71,6 @@ const Vehicles = () => {
     const model = watch('model');
     const navigate = useNavigate()
 
-    console.log(errors)
     
     const onSubmit = data => {
         setBackErrors({})
@@ -82,7 +78,6 @@ const Vehicles = () => {
         registerRequest(data)
             .then((vehicle) => {
                 navigate(`/ors/new?plate=${vehicle.plate}&nif=${carOwner.nifOrNie}`)
-                console.log(vehicle._id); ///
             })
             .catch(err => {
                 console.log(err)
@@ -112,7 +107,6 @@ const Vehicles = () => {
         if (make) {
             getModels(make)
                 .then(res => {
-                    console.log('hola');
                     setModels(res.Models)
                 })
         }
