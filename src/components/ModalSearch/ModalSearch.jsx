@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap'
 import { searchPlate } from '../../services/VehicleServices';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 const ModalSearch = ({ setVehicleSearch }) => {
+    const navigate = useNavigate()
+    
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -16,6 +19,9 @@ const ModalSearch = ({ setVehicleSearch }) => {
     }
 
     const handleSelect = () => {
+        if (vehicle) {
+            navigate(`/ors/new?plate=${vehicle.plate}&nif=${vehicle.carOwner?.nifOrNie}`)
+        }
         setVehicleSearch(vehicle);
         handleClose();
     }

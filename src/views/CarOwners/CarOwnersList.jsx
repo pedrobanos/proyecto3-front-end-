@@ -101,16 +101,12 @@ const CarOwnersList = () => {
                                                         <td>{carOwner.address.street}</td>
                                                         <td>{carOwner.address.city}</td>
                                                         <td>{carOwner.address.zipCode}</td>
-                                                        <td>
-                                                            <ul className="action-list">
-                                                                <Link to={`/carowners/${carOwner.id}`}><i className="fa fa-edit"></i></Link>
-                                                                <button className="btn  "
-                                                                    onClick={() => handleDelete(carOwner.id)}>
-                                                                    <i className="fa-solid fa-trash"
-                                                                        style={{ color: "red", border: 'none' }}></i>
-                                                                </button>
-                                                            </ul>
-                                                        </td>
+                                                        <Link to={`/carowners/${carOwner.id}`}><i className="fa fa-edit"></i></Link>
+                                                        <button className="btn  "
+                                                            onClick={() => handleDelete(carOwner.id)}>
+                                                            <i className="fa-solid fa-trash"
+                                                                style={{ color: "red", border: 'none' }}></i>
+                                                        </button>
                                                     </tr>
                                                 )
                                                 ))}

@@ -77,8 +77,15 @@ const Vehicles = () => {
         setIsSubmitting(true)
         registerRequest(data)
             .then((vehicle) => {
+                
+                if (carOwner) {
+                    navigate(`/ors/new?plate=${vehicle.plate}&nif=${carOwner?.nifOrNie}`)
+                }
 
-                navigate(`/ors/new?plate=${vehicle.plate}&nif=${carOwner?.nifOrNie}`)
+                if (carOwnerSearch){
+                    navigate(`/ors/new?plate=${vehicle.plate}&nif=${carOwnerSearch?.nifOrNie}`)
+                }
+                
             })
             .catch(err => {
                 console.log(err)

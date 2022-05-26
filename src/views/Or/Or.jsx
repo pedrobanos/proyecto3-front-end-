@@ -83,11 +83,11 @@ const Or = () => {
         <div className='container'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className='mt-3 mb-3 orTitle'>NEW OR</h1>
-                {!vehicle && !carOwner ? (
+                {!vehicle ? (
                     <div className='OrContainer'>
                         <div className='ClientContainer'>
-                            <p>Name: {carOwner?.name}</p>
-                            <p>Phone Number: </p>
+                            <p>Name: {vehicleSearch?.carOwner?.name}</p>
+                            <p>Phone Number: {vehicleSearch?.carOwner?.phoneNumber}</p>
                         </div>
                         <hr className='line' />
                         <div className='VehicleContainer'>

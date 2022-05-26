@@ -27,7 +27,7 @@ const DropDownMenu = () => {
           <DropdownItem onClick={() => navigate('/vehicles/new')} className="itemDropdownItem"><i className="fa-solid fa-car"></i>  Add vehicle</DropdownItem>
           <DropdownItem onClick={() => navigate('/ors')} className="itemDropdownItem"><i className="fa-solid fa-clipboard-list"></i> Pending Or's</DropdownItem>
           <DropdownItem onClick={() => navigate('/vehicles')} className="itemDropdownItem"><i className="fa-solid fa-table-list"></i> Vehicles Data</DropdownItem>
-          <DropdownItem onClick={() => navigate('/vehicles')} className="itemDropdownItem3"><i className="fa-solid fa-list"></i> Clients Data</DropdownItem>
+          <DropdownItem onClick={() => navigate('/carowners')} className="itemDropdownItem3"><i className="fa-solid fa-list"></i> Clients Data</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
