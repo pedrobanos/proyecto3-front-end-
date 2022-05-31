@@ -128,11 +128,11 @@ const DetailFromOr = () => {
                                         <td>{garage?.bussinesName}</td>
                                     </tr>
                                     <tr className="content">
-                                        <td> CIF : {garage?.cif} <br /> 
-                                            Address : {garage?.address?.street} <br /> 
+                                        <td>{garage?.cif} <br /> 
+                                            {garage?.address?.street} <br /> 
                                             {garage?.address?.zipCode},{garage?.address?.city}<br /> 
                                             {garage?.address?.state}({garage?.address?.country})<br /> 
-                                            email : {garage?.email} <br /> </td>
+                                            {garage?.email} <br /> </td>
                                     </tr>
                                 </tbody>
                             </table>
