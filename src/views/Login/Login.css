@@ -1,9 +1,33 @@
+.formContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.formLogin {
+    background-color: #00000070;
+    border-radius: 2rem;
+    padding: 0rem 1rem 0 1rem;
+    opacity: 0.99;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+}
+.logoImg{
+    height: 15rem;
+}
 
 .AccountText {
     font-size: 12px;
     text-align: center;
     /* display: flex; */
 }
+
 .CreateAcount {
     display: flex;
     position: fixed;
@@ -11,32 +35,30 @@
     justify-content: center;
 
 }
+
 .lineLogin {
     position: fixed;
     bottom: 60px;
     color: black;
 }
-#eyeIcon{
+
+#eyeIcon {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     color: #ffc107;
 }
-#cif1{
+
+#cif1 {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-.cifImputGroup{
-    margin-top: 50px !important;
-}
-.passwordImputGroup{
-    margin-top: 50px !important;
-}
 
-#inputGroup-sizing-default{
+#inputGroup-sizing-default {
     border-top-left-radius: 10px !important;
     border-bottom-left-radius: 10px !important;
     color: #ffc107;
 }
-svg{
-fill: #ffc107;
+
+svg {
+    fill: #ffffff;
 }
