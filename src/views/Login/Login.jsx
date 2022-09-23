@@ -59,14 +59,14 @@ const Login = () => {
 
     return (
         <div className="formContainer">
-                <form  className= "formLogin" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="row justify-content-center my-5">
-                        <div className="col-sm-6 col-md-8 col-lg-8">
+            <form className="formLogin" onSubmit={handleSubmit(onSubmit)}>
+                <div className="row justify-content-center my-5">
+                    <div className="formGroup">
                             <div className='logoContainer'>
-                               <img className='logoImg' src={LogoGarage}></img>
+                                <img className='logoImg' src={LogoGarage}></img>
                             </div>
                             <div className='cifImputGroup'>
-                                <InputComponent className="input-group mb-4"
+                                <InputComponent className="input-group"
                                     id="cif1"
                                     register={register}
                                     error={error || errors.cif?.message}
@@ -78,7 +78,7 @@ const Login = () => {
                                 />
                             </div>
                             <div className='passwordImputGroup'>
-                                <InputComponent className="input-group pb-4 mt-4 mb-4"
+                                <InputComponent className="input-group pb-4"
                                     id="password"
                                     register={register}
                                     onToggle={onToggle}
@@ -92,7 +92,7 @@ const Login = () => {
                                 />
                             </div>
 
-                            <div className=" form-actions form-check mt-4">
+                            <div className=" form-actions form-check">
                                 <input
                                     type="checkbox"
                                     className="form-check-input"
@@ -109,14 +109,14 @@ const Login = () => {
                         <div className='text-center'>
                             <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
                         </div>
-                        <hr className='lineLogin'></hr>
-                        <div className='CreateAcount'>
-                            <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
-                            <Link className='AccountText' to="/register"><p> Join us.</p>
-                            </Link>
-                        </div>
-                    </div >
-                </form>
+                    <hr className='lineLogin'></hr>
+                    <div className='CreateAcount'>
+                        <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
+                        <Link className='AccountText' to="/register"><p> Join us.</p>
+                        </Link>
+                    </div>
+                </div >
+            </form>
         </div>
     )
 }
