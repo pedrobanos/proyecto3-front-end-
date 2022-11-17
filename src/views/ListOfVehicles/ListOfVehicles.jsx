@@ -118,7 +118,7 @@ const ListOfVehicles = () => {
                     </table>
                 </div>
             )}
-            <BackButton customRoute={"profile"}/>
+            <BackButton customRoute={"home"}/>
             <DropDownMenu/>
         </div >
     )

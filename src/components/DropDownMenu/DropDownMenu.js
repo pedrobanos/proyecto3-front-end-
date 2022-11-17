@@ -20,7 +20,7 @@ const DropDownMenu = () => {
         </DropdownToggle>
         <DropdownMenu className="listOfItems">
           <div className="d-flex">
-            <DropdownItem onClick={() => navigate('/profile')} className="itemDropdownItem1"><i className="fa-solid fa-house"></i></DropdownItem>
+            <DropdownItem onClick={() => navigate('/home')} className="itemDropdownItem1"><i className="fa-solid fa-house"></i></DropdownItem>
             <DropdownItem onClick={logout} className="itemDropdownItem2 text-center"><i className="fa-solid fa-arrow-right-from-bracket"></i></DropdownItem>
           </div>
           <DropdownItem onClick={() => navigate('/ors/new')} className="itemDropdownItem4"><i className="fa-solid fa-file-circle-plus"></i> New Or</DropdownItem>

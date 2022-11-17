@@ -31,7 +31,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/" element={<Login />}></Route>
         <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/profile" element={<MainMenu />}></Route>
+          <Route path="/home" element={<MainMenu />}></Route>
           <Route path="/carowners/new" element={<CarOwners />}></Route>
           <Route path="/carowners" element={<CarOwnersList/>}></Route>
           <Route path="/carowners/:id" element={<CarOwnersEdit/>}></Route>
