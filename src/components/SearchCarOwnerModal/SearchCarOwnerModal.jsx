@@ -3,18 +3,30 @@ import { useForm } from 'react-hook-form';
 import { Modal, Button } from 'react-bootstrap'
 import InputComponent from '../InputComponent';
 import { searchCarOwner } from '../../services/CarOwnserService';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup'
 
+
+const schema = yup.object({
+    nifOrNie: yup.string().required('Nif is a required field').matches(/^(\d{8})([A-Z])$/, 'Invalid Nif form')
+}).required()
 
 const SearchCarOwnerModal = ({ setCarOwnerSearch }) => {
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [nifOrNie, setNifOrNie] = useState("");
     const [carOwner, setCarOwner] = useState();
-
+    const { formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
     const onSearch = () => {
-        searchCarOwner(nifOrNie).then(result => setCarOwner(result))
+        if(nifOrNie){
+            searchCarOwner(nifOrNie).then(result => setCarOwner(result))
+        } 
+        
     }
 
     const handleSelect = () => {
@@ -32,18 +44,24 @@ const SearchCarOwnerModal = ({ setCarOwnerSearch }) => {
             >
                 <Modal.Header closeButton>
                     <form>
+                        <div className='mb-3'>
+                            <Modal.Title>Search car owner</Modal.Title>
+                        </div>
                         <div className='container'>
-                            <div className='col'>
-                                <Modal.Title>Search car owner</Modal.Title>
+                            <div className='row'>
+                                <div className='col'>
+                                    <input className="input-group mb-2"
+                                        id="plate"
+                                        placeholder="Introduce a nie"
+                                        name="plate"
+                                        value={nifOrNie}
+                                        onChange={(e) => setNifOrNie(e.target.value)}
+                                    />
+                                </div>
+                                <div className='col'>
+                                    <Button type="button" onClick={onSearch} variant="primary"><i className="fa-solid fa-magnifying-glass"></i></Button>
+                                </div>
                             </div>
-                            <input className="input-group mb-2"
-                                id="plate"
-                                placeholder="Introduce a nie"
-                                name="plate"
-                                value={nifOrNie}
-                                onChange={(e) => setNifOrNie(e.target.value)}
-                            />
-                            <Button type="button" onClick={onSearch} variant="primary"><i className="fa-solid fa-magnifying-glass"></i></Button>
                         </div>
                         <div className='mt-4'>
                             {carOwner ? (

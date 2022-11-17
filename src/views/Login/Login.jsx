@@ -18,7 +18,7 @@ const schema = yup.object({
 const Login = () => {
     const navigate = useNavigate()
     let location = useLocation();
-    let from = location.state?.from?.pathname || "/profile";
+    let from = location.state?.from?.pathname || "/home";
 
     const { login } = useAuthContext()
     const [error, setError] = useState();
@@ -109,7 +109,8 @@ const Login = () => {
                             </div>
                         </div>
                         <div className='text-center'>
-                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}
+                            onChange={handleRememberMeChange}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
                         </div>
                         <hr className='lineLogin'></hr>
                         <div className='CreateAcount'>

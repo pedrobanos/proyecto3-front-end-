@@ -119,7 +119,7 @@ const CarOwnersList = () => {
                 </div>
             )}
             <div className="mt-4">
-                <BackButton customRoute={"profile"} />
+                <BackButton customRoute={"home"} />
                 <DropDownMenu />
             </div>
         </div>

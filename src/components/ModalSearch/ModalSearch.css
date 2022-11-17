@@ -1,0 +1,58 @@
+.container{
+    height: 120px;
+    width: 600px;
+}
+
+
+.modalPic {
+    background-image: url('../../assets/matricula-removebg-preview.png');
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 500px;
+}
+
+.numberBox{
+    height: 40px;
+    width: 60px;
+}
+
+.letterBox{
+    height: 40px;
+    width: 60px;
+}
+
+.numberInput{
+   position: relative;
+   left: 30px;
+   bottom: -20px;
+    height: 50px;
+    margin-left: 2px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.numberInput::placeholder {
+    color: grey;
+    font-size: 28px;
+}
+
+.letterInput {
+    left: 15px;
+    bottom: -20px;
+    height: 50px;
+    text-align: center;
+    font-size: 28px;
+
+}
+
+.letterInput::placeholder {
+    color: grey;
+    font-size: 28px;
+}
+
+.buttonSearch{
+    position: relative;
+   left: 30px;
+   bottom: -30px;
+}
+
