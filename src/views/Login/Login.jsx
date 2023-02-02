@@ -122,7 +122,7 @@ const Login = () => {
                         </div>
                     <hr className='lineLogin'></hr>
                     <div className='CreateAcount'>
-                        <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
+                        <h6 className='mb-4 AccountText'>Don't have an account yet?.</h6>
                         <Link className='AccountText' to="/register"><p> Join us.</p>
                         </Link>
                     </div>
