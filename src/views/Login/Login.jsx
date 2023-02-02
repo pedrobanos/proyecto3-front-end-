@@ -100,7 +100,7 @@ const Login = () => {
                             onChange={handleRememberMeChange}
                         />
                         <label className="form-check-label fs-6" htmlFor="rememberPassword">
-                            Remember me
+                            Remember me.
                         </label>
                     </div>
                             <div className=" form-actions form-check">
