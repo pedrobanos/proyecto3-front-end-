@@ -1,29 +1,72 @@
 .formContainer {
-    height: 100vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
-.formLogin {
-    background-color: #00000070;
-    border-radius: 2rem;
-    padding: 1rem 3rem;
-    opacity: 0.99;
-}
-.formGroup{
+
+form {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    background-color: #00000076;
+    border-radius: 1rem;
+    padding: 3rem 4rem;
 }
+
+.brand {
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+
+}
+
+img {
+    height: 10rem;
+    width: 10rem;
+}
+
+input {
+    background-color: transparent;
+    padding: 0.5rem;
+    border: 0.1rem solid rgb(175, 160, 27);
+    border-radius: 10px;
+    color: rgb(198, 180, 22);
+    font-size: 1rem;
+    width: 100%;
+}
+
+input::placeholder {
+    color: rgb(175, 160, 27);
+    font-weight: bold;
+}
+
+input:focus {
+    border: 0.1rem solid rgb(255, 230, 0);
+    outline: none;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .logoContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 120px;
 }
-.logoImg{
-    height: 15rem;
+
+.logoImg {
+    object-fit: cover;
+    width: 35vw;
+    height: 150px;
+    margin-bottom: 2rem;
 }
 
 .AccountText {
@@ -34,10 +77,7 @@
 
 .CreateAcount {
     display: flex;
-    position: fixed;
-    bottom: 30px;
     justify-content: center;
-
 }
 
 .lineLogin {
@@ -46,19 +86,16 @@
     color: black;
 }
 
-#eyeIcon {
+/* #eyeIcon {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     color: #ffc107;
-}
+} */
 
-#cif1 {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-#inputGroup-sizing-default {
-    border-top-left-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
-    color: #ffc107;
+.btn {
+    padding: 1rem 3rem;
+    background-color: rgb(255, 230, 0);
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
 }

@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/alt-text */
+
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup';
-import InputComponent from '../../components/InputComponent';
 import { useState } from 'react';
 import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LogoGarage from '../../assets/logoGarage.png'
+import InputLogin from '../../components/InputLogin/InputLogin';
 import './Login.css'
 
 
@@ -30,7 +32,7 @@ const Login = () => {
         password: "",
         rememberPassword: false,
     });
-    const { garageId, password, rememberPassword } = inputs;
+    const { rememberPassword } = inputs;
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
@@ -53,72 +55,70 @@ const Login = () => {
             .finally(() => setIsSubmitting(false))
     }
     const onToggle = () => {
-
         setToggle(curr => !curr)
     }
 
+
     return (
-        <div className="formContainer">
-            <form className="formLogin" onSubmit={handleSubmit(onSubmit)}>
-                <div className="row justify-content-center my-5">
-                    <div className="formGroup">
-                            <div className='logoContainer'>
-                                <img className='logoImg' src={LogoGarage}></img>
-                            </div>
-                            <div className='cifImputGroup'>
-                                <InputComponent className="input-group"
-                                    id="cif1"
-                                    register={register}
-                                    error={error || errors.cif?.message}
-                                    placeholder="Enter your cif"
-                                    type="cif"
-                                    name="cif"
-                                    icon={"fa-solid fa-user"}
-
-                                />
-                            </div>
-                            <div className='passwordImputGroup'>
-                                <InputComponent className="input-group pb-4"
-                                    id="password"
-                                    register={register}
-                                    onToggle={onToggle}
-                                    error={error || errors.password?.message}
-                                    placeholder="Password"
-                                    type={toggle ? 'text' : 'password'}
-                                    name="password"
-                                    icon={"fa-solid fa-lock"}
-                                    eye={"far fa-eye"}
-
-                                />
-                            </div>
-
-                            <div className=" form-actions form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    id="rememberPassword"
-                                    name="checkbox"
-                                    checked={rememberPassword}
-                                    onChange={handleRememberMeChange}
-                                />
-                                <label className="form-check-label fs-6" htmlFor="rememberPassword">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <div className='text-center'>
-                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
-                        </div>
-                    <hr className='lineLogin'></hr>
-                    <div className='CreateAcount'>
-                        <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
-                        <Link className='AccountText' to="/register"><p> Join us.</p>
-                        </Link>
+        <div>
+            <div className="formContainer">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className='brand'>
+                        <img src={LogoGarage}></img>
                     </div>
-                </div >
-            </form>
+                    <div className='cifImputGroup'>
+                        <InputLogin className="input-group"
+                            id="cif1"
+                            register={register}
+                            error={error || errors.cif?.message}
+                            placeholder="Enter your cif"
+                            type="cif"
+                            name="cif"
+                            icon={"fa-solid fa-user"}
+                        />
+                    </div>
+                    <div className='passwordImputGroup pb-4'>
+                        <InputLogin className="input-group"
+                            id="password"
+                            register={register}
+                            onToggle={onToggle}
+                            error={error || errors.password?.message}
+                            placeholder="Password"
+                            type={toggle ? 'text' : 'password'}
+                            name="password"
+                            icon={"fa-solid fa-lock"}
+                            eye={"far fa-eye"}
+                        />
+                    </div>
+                    <div className=" form-actions form-check mb-4">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            id="rememberPassword"
+                            name="checkbox"
+                            checked={rememberPassword}
+                            onChange={handleRememberMeChange}
+                        />
+                        <label className="form-check-label fs-6" htmlFor="rememberPassword">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div className='text-center'>
+                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'}`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                    </div>
+                    <hr className='lineLogin'></hr>
+
+                </form>
+            </div>
+            <div className='CreateAcount'>
+                <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
+                <Link className='AccountText' to="/register"><p> Join us.</p>
+                </Link>
+            </div>
         </div>
     )
 }
+
 
 export default Login
