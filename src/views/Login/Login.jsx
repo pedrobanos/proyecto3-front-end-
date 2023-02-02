@@ -21,7 +21,7 @@ const schema = yup.object({
 const Login = () => {
     const navigate = useNavigate()
     let location = useLocation();
-    let from = location.state?.from?.pathname || "/profile";
+    let from = location.state?.from?.pathname || "/home";
 
     const { login } = useAuthContext()
     const [error, setError] = useState();
@@ -103,9 +103,28 @@ const Login = () => {
                             Remember me
                         </label>
                     </div>
-
-                    <div className='text-center'>
-                        <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'}`}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                            <div className=" form-actions form-check">
+                                <input
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    id="rememberPassword"
+                                    name="checkbox"
+                                    checked={rememberPassword}
+                                    onChange={handleRememberMeChange}
+                                />
+                                <label className="form-check-label fs-6" htmlFor="rememberPassword">
+                                    Remember me
+                                </label>
+                            </div>
+                        <div className='text-center'>
+                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}
+                            onChange={handleRememberMeChange}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
+                        </div>
+                    <hr className='lineLogin'></hr>
+                    <div className='CreateAcount'>
+                        <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
+                        <Link className='AccountText' to="/register"><p> Join us.</p>
+                        </Link>
                     </div>
                     <hr className='lineLogin'></hr>
 

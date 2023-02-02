@@ -15,7 +15,7 @@ import './CarOwnersList.css'
 
 const schema = yup.object({
     name: yup.string().required('Please enter a name'),
-    nifOrNie: yup.string().required('Nif is a required field').matches(/^(\d{8})([A-Z])$/, 'Invalid cif form'),
+    nifOrNie: yup.string().required('Nif is a required field').matches(/^(\d{8})([A-Z])$/, 'Invalid nif form'),
     email: yup.string().email().required('Email is a required field'),
     address: yup.object({
         street: yup.string().required('Street is a required field'),

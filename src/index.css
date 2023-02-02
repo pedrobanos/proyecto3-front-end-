@@ -13,7 +13,6 @@ body {
   max-height: 100vh;
   max-width: 100vw;
   overflow: auto;
-  background-image: radial-gradient(circle, #ffde00, #bdab12, #827a16, #4d4b13, #212009);
 }
 
 code {

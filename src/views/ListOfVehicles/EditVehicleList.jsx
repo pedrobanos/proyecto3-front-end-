@@ -178,7 +178,7 @@ const EditVehicleList = () => {
                     <button type="submit" className={`mt-4 btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
                 </form>
             </FormProvider>
-            <BackButton customRoute={"profile"} />
+            <BackButton customRoute={"home"} />
             <DropDownMenu />
         </div>
     )

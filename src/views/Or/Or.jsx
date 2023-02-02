@@ -69,7 +69,7 @@ const Or = () => {
         setIsSubmitting(true)
         registerNewOr(formData)
             .then((ors) => {
-                navigate('/profile')
+                navigate('/home')
             })
             .catch(err => {
                 setBackErrors(err?.response?.data?.errors)
@@ -85,12 +85,12 @@ const Or = () => {
                 <h1 className='mt-3 mb-3 orTitle'>NEW OR</h1>
                 {!vehicle ? (
                     <div className='OrContainer'>
-                        <div className='ClientContainer'>
+                        {/* <div className='ClientContainer'>
                             <p>Name: {vehicleSearch?.carOwner?.name}</p>
                             <p>Phone Number: {vehicleSearch?.carOwner?.phoneNumber}</p>
-                        </div>
-                        <hr className='line' />
-                        <div className='VehicleContainer'>
+                        </div> */}
+                        
+                        <div className='VehicleContainer mt-4'>
                             <p>Plate: {vehicleSearch?.plate}</p>
 
                             <ModalSearch setVehicleSearch={setVehicleSearch} />
@@ -232,7 +232,7 @@ const Or = () => {
                 )}
                 <button type="submit" className={`col-4 buttonEditOr mt-4 btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}>{isSubmitting ? 'Creating vehicle...' : 'Submit'}</button>
             </form>
-            <BackButton customRoute={"profile"} />
+            <BackButton customRoute={"home"} />
             <DropDownMenu />
         </div>
     )
