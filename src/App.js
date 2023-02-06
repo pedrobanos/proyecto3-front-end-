@@ -22,29 +22,27 @@ function App() {
   return (
     <div className="App">
       {/* <Navbar /> */}
-      <div className="container">
         {!isAuthenticationFetched ? (
-        <Spinner/>
+          <Spinner />
         ) : (
-      <Routes>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/home" element={<MainMenu />}></Route>
-          <Route path="/carowners/new" element={<CarOwners />}></Route>
-          <Route path="/carowners" element={<CarOwnersList/>}></Route>
-          <Route path="/carowners/:id" element={<CarOwnersEdit/>}></Route>
-          <Route path="/vehicles/new" element={<Vehicles />}></Route>
-          <Route path="/vehicles" element={<ListOfVehicles />}></Route>
-          <Route path="/vehicles/:id" element={<EditVehicleList />}></Route>
-          <Route path="/ors/new" element={<Or />}></Route>
-          <Route path="/ors" element={<PendingOrs/>} ></Route> 
-          <Route path="/ors/:id" element={<DetailFromOr/>}></Route>
-        </Route>
-      </Routes>
+          <Routes>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/" element={<Login />}></Route>
+            <Route path="/" element={<ProtectedRoute />}>
+              <Route path="/home" element={<MainMenu />}></Route>
+              <Route path="/carowners/new" element={<CarOwners />}></Route>
+              <Route path="/carowners" element={<CarOwnersList />}></Route>
+              <Route path="/carowners/:id" element={<CarOwnersEdit />}></Route>
+              <Route path="/vehicles/new" element={<Vehicles />}></Route>
+              <Route path="/vehicles" element={<ListOfVehicles />}></Route>
+              <Route path="/vehicles/:id" element={<EditVehicleList />}></Route>
+              <Route path="/ors/new" element={<Or />}></Route>
+              <Route path="/ors" element={<PendingOrs />} ></Route>
+              <Route path="/ors/:id" element={<DetailFromOr />}></Route>
+            </Route>
+          </Routes>
         )}
-      </div>
     </div>
   );
 }

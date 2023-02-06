@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import LogoGarage from '../../assets/logoGarage.png'
+import GARAGEmanagement from '../../assets/GARAGEmanagement.png'
 import InputLogin from '../../components/InputLogin/InputLogin';
 import './Login.css'
 
@@ -60,11 +60,10 @@ const Login = () => {
 
 
     return (
-        <div>
             <div className="formContainer">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='brand'>
-                        <img src={LogoGarage}></img>
+                        <img src={GARAGEmanagement}></img>
                     </div>
                     <div className='cifImputGroup'>
                         <InputLogin className="input-group"
@@ -103,39 +102,20 @@ const Login = () => {
                             Remember me.
                         </label>
                     </div>
-                            <div className=" form-actions form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    id="rememberPassword"
-                                    name="checkbox"
-                                    checked={rememberPassword}
-                                    onChange={handleRememberMeChange}
-                                />
-                                <label className="form-check-label fs-6" htmlFor="rememberPassword">
-                                    Remember me
-                                </label>
-                            </div>
                         <div className='text-center'>
-                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} col-3 col-sm- col-lg-3 rounded-pill mt-4 mb-4`}
+                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}
                             onChange={handleRememberMeChange}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
                         </div>
-                    <hr className='lineLogin'></hr>
-                    <div className='CreateAcount'>
-                        <h6 className='mb-4 AccountText'>Don't have an account yet?.</h6>
-                        <Link className='AccountText' to="/register"><p> Join us.</p>
-                        </Link>
-                    </div>
-                    <hr className='lineLogin'></hr>
+                        <div className='text-center'>
+                            <button className="btn btn-warning"> Did you forget your password?</button>
+                        </div>
 
+                    <div className='CreateAcount'>
+                        <h6 className='mb-4 AccountText'>Do you not have an account?</h6>
+                        <Link className='AccountText' to="/register"><p>Sign up</p></Link>
+                    </div>
                 </form>
             </div>
-            <div className='CreateAcount'>
-                <h6 className='mb-4 AccountText'>Don't have an account yet?</h6>
-                <Link className='AccountText' to="/register"><p> Join us.</p>
-                </Link>
-            </div>
-        </div>
     )
 }
 
