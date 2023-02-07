@@ -4,13 +4,14 @@ import carImage from "../../assets/car-image.webp"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
 import { Spinner } from "reactstrap"
+import Navbar from "../../components/Misc/Navbar"
 
 
 
 
 const MainMenu = () => {
 
-const { garage } = useAuthContext()
+    const { garage } = useAuthContext()
 
 
     return (
@@ -20,7 +21,9 @@ const { garage } = useAuthContext()
                 <Spinner />
             ) : (
                 <div className="mt-3 mx-4 row text-center justify-content-center">
-                <h1 id="MainMenu" className="mt-2">HOME<i className="fa-solid fa-car-burst"></i></h1>
+                    <Navbar></Navbar>
+                    
+                    <h1 id="MainMenu" className="mt-2">HOME<i className="fa-solid fa-car-burst"></i></h1>
                     <div className="col positionMenu">
                         <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/ors/new">
                             <h5> NEW OR </h5>
