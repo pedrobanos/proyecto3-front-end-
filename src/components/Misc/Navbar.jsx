@@ -7,8 +7,9 @@ import { logout } from '../../store/AccessTokenStore'
 
 
 
-const Navbar = () => {
-
+const Navbar = (garage) => {
+    
+    console.log(garage);
 
     return (
         <nav className="navbar navbar-expand-lg d-flex justify-content-between bg-body-tertiary">
@@ -18,7 +19,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className=''>
-                <h6>EMPRESA: pito</h6>
+                <h6>EMPRESA: {garage.cif}</h6>
             </div>
             <ul className="navbar-nav mx-2">
 
@@ -29,14 +30,14 @@ const Navbar = () => {
                     <Link className="nav-link text-dark" to="/carowners">Clients</Link></li>
 
                 <li className='nav-item'>
-                    <NavDropdown className="text-dark" title={<i style={{color: "black"}} className="fa-solid fa-bars text-dark"></i>}>
+                    <NavDropdown className="text-dark" title={<i style={{ color: "black" }} className="fa-solid fa-bars text-dark"></i>}>
 
                         <NavDropdown.Item href="/ors/new">
                             <i className="fa-solid fa-file-circle-plus"></i> New Or</NavDropdown.Item>
 
                         <NavDropdown.Item href="/vehicles/new"><i className="fa-solid fa-car"></i>  Add vehicle</NavDropdown.Item>
 
-                        <NavDropdown.Item onClick={logout}><i className="fa-solid fa-arrow-right-from-bracket"></i> <span/>Log Out</NavDropdown.Item>
+                        <NavDropdown.Item onClick={logout}><i className="fa-solid fa-arrow-right-from-bracket"></i> <span />Log Out</NavDropdown.Item>
 
                     </NavDropdown>
                 </li>

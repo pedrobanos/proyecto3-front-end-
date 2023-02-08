@@ -57,7 +57,7 @@ const ListOfVehicles = () => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar garage={ garage }/>
 
             <h1 className="mt-4 mb-3 text-center" id="vehicleListTitle">VEHICLE DATA</h1>
             {!vehicles ? (
