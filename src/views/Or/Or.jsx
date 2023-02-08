@@ -11,6 +11,7 @@ import { searchCarOwner } from '../../services/CarOwnserService';
 import DropDownMenu from '../../components/DropDownMenu/DropDownMenu';
 import ModalSearch from '../../components/ModalSearch/ModalSearch';
 import BackButton from '../../components/BackButton/BackButton';
+import Navbar from '../../components/Misc/Navbar';
 
 
 
@@ -79,8 +80,9 @@ const Or = () => {
             })
     };
     return (
+        <div>
+            <Navbar />
 
-        <div className='container'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className='mt-3 mb-3 orTitle'>NEW OR</h1>
                 {!vehicle ? (

@@ -6,6 +6,7 @@ import SearchBar from "../../components/SearchBar"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
 import BackButton from "../../components/BackButton/BackButton"
+import Navbar from "../../components/Misc/Navbar"
 
 
 const ListOfVehicles = () => {
@@ -27,10 +28,10 @@ const ListOfVehicles = () => {
 
     const handleDelete = (id) => {
         deleteVehicle(id)
-          .then(() => {
-            getGarage()
-          })
-      }
+            .then(() => {
+                getGarage()
+            })
+    }
 
     useEffect(() => {
         listVehicles()
@@ -56,70 +57,76 @@ const ListOfVehicles = () => {
 
     return (
         <div>
+            <Navbar />
+
             <h1 className="mt-4 mb-3 text-center" id="vehicleListTitle">VEHICLE DATA</h1>
             {!vehicles ? (
                 <Spinner />
             ) : (
-                <div className="panel">
-                    <SearchBar 
-                        setSearch={searchItems}>
-                    </SearchBar>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Plate</th>
-                                <th scope="col">Make</th>
-                                <th scope="col">Model</th>
-                                <th scope="col">Contact</th>
-                                <th scope="col">Tel</th>
-                            </tr>
-                        </thead>
-                        {/* <Link to={`/vehicles/${vehicle.id}`}> */}
-                        <tbody>
-                            {search ? (
-                                filteredResults?.map((vehicle) => (
-                                    <tr key={vehicle.id}>
-                                        <th scope="row">{vehicle.plate}</th>
-                                        <td>{vehicle.make.charAt(0).toUpperCase() + vehicle.make.slice(1)}</td>
-                                        <td>{vehicle.model}</td>
-                                        <td>{vehicle?.carOwner?.name}</td>
-                                        <td>{vehicle?.carOwner?.phoneNumber}</td>
-                                        <Link to={`/vehicles/${vehicle.id}/edit`}>
-                                            <i className="fa-solid fa-pen-to-square"></i>
-                                        </Link>
-                                        <button className="btn " 
-                                        onClick={() => handleDelete(vehicle.id)}>
-                                            <i className="fa-solid fa-trash"
-                                            style={{color:"red", border:'none'}}></i> 
-                                            </button>
+                <div className="container">
+                    <div className="row">
+                        <div className="panel">
+                            <SearchBar
+                                setSearch={searchItems}>
+                            </SearchBar>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Plate</th>
+                                        <th scope="col">Make</th>
+                                        <th scope="col">Model</th>
+                                        <th scope="col">Contact</th>
+                                        <th scope="col">Tel</th>
                                     </tr>
-                                ))
-                            ) : (
-                                vehicles?.map((vehicle) => (
-                                    <tr key={vehicle.id}>
-                                        <th scope="row">{vehicle.plate}</th>
-                                        <td>{vehicle.make.charAt(0).toUpperCase() + vehicle.make.slice(1)}</td>
-                                        <td>{vehicle.model}</td>
-                                        <td>{vehicle?.carOwner?.name}</td>
-                                        <td>{vehicle?.carOwner?.phoneNumber}</td>
-                                        <Link to={`/vehicles/${vehicle.id}`}>
-                                            <i className="fa-solid fa-pen-to-square"></i>
-                                        </Link>
-                                        <button className="btn " 
-                                        onClick={() => handleDelete(vehicle.id)}>
-                                            <i className="fa-solid fa-trash"
-                                            style={{color:"red", borderColor:'none'}}></i> 
-                                            </button>
-                                    </tr>
-                                )
-                                ))}
-                        </tbody>
-                        {/* </Link> */}
-                    </table>
+                                </thead>
+                                {/* <Link to={`/vehicles/${vehicle.id}`}> */}
+                                <tbody>
+                                    {search ? (
+                                        filteredResults?.map((vehicle) => (
+                                            <tr key={vehicle.id}>
+                                                <th scope="row">{vehicle.plate}</th>
+                                                <td>{vehicle.make.charAt(0).toUpperCase() + vehicle.make.slice(1)}</td>
+                                                <td>{vehicle.model}</td>
+                                                <td>{vehicle?.carOwner?.name}</td>
+                                                <td>{vehicle?.carOwner?.phoneNumber}</td>
+                                                <Link to={`/vehicles/${vehicle.id}/edit`}>
+                                                    <i className="fa-solid fa-pen-to-square"></i>
+                                                </Link>
+                                                <button className="btn "
+                                                    onClick={() => handleDelete(vehicle.id)}>
+                                                    <i className="fa-solid fa-trash"
+                                                        style={{ color: "red", border: 'none' }}></i>
+                                                </button>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        vehicles?.map((vehicle) => (
+                                            <tr key={vehicle.id}>
+                                                <th scope="row">{vehicle.plate}</th>
+                                                <td>{vehicle.make.charAt(0).toUpperCase() + vehicle.make.slice(1)}</td>
+                                                <td>{vehicle.model}</td>
+                                                <td>{vehicle?.carOwner?.name}</td>
+                                                <td>{vehicle?.carOwner?.phoneNumber}</td>
+                                                <Link to={`/vehicles/${vehicle.id}`}>
+                                                    <i className="fa-solid fa-pen-to-square"></i>
+                                                </Link>
+                                                <button className="btn "
+                                                    onClick={() => handleDelete(vehicle.id)}>
+                                                    <i className="fa-solid fa-trash"
+                                                        style={{ color: "red", borderColor: 'none' }}></i>
+                                                </button>
+                                            </tr>
+                                        )
+                                        ))}
+                                </tbody>
+                                {/* </Link> */}
+                            </table>
+                        </div>
+                    </div>
                 </div>
             )}
-            <BackButton customRoute={"home"}/>
-            <DropDownMenu/>
+            <BackButton customRoute={"home"} />
+            <DropDownMenu />
         </div >
     )
 }

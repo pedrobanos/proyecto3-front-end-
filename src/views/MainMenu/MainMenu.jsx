@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
 import "./MainMenu.css"
-import carImage from "../../assets/car-image.webp"
-import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import { useAuthContext } from "../../contexts/AuthContext"
 import { Spinner } from "reactstrap"
 import Navbar from "../../components/Misc/Navbar"
+import { useEffect, useState } from "react"
+import { listOfOrs } from "../../services/OrServices"
+import "../Or/Or.css"
+
 
 
 
@@ -12,50 +14,60 @@ import Navbar from "../../components/Misc/Navbar"
 const MainMenu = () => {
 
     const { garage } = useAuthContext()
+    const [ors, setOrs] = useState(null)
+
+
+
+    useEffect(() => {
+        listOfOrs()
+            .then(response => {
+                setOrs(response)
+            })
+    }, [garage])
+
 
 
     return (
 
-        <div className="container1">
-            {!garage ? (
+        <div className="justify-content-center">
+            <Navbar />
+            {!ors && !garage ? (
                 <Spinner />
             ) : (
-                <div className="mt-3 mx-4 row text-center justify-content-center">
-                    <Navbar></Navbar>
-                    
-                    <h1 id="MainMenu" className="mt-2">HOME<i className="fa-solid fa-car-burst"></i></h1>
-                    <div className="col positionMenu">
-                        <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/ors/new">
-                            <h5> NEW OR </h5>
-                        </Link>
-                        <div className="col">
-                            <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/vehicles/new">
-                                <h5> + ADD VEHICLE </h5>
-                            </Link>
+                <div className="container">
+                    <div className="row">
+                        <div className="panel">
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Or number</th>
+                                        <th scope="col">Entry Date</th>
+                                        <th scope="col">Plate</th>
+                                        <th scope="col">Make & Model</th>
+                                        <th scope="col">VIN</th>
+                                    </tr>
+                                </thead>
+                                {/* <Link to={`/vehicles/${vehicle.id}`}> */}
+                                <tbody>
+                                    {ors?.map((or, i) => (
+                                        <tr key={i}>
+                                            <th scope="row">{('22000') + i}</th>
+                                            <td>{new Date(or.createdAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })}</td>
+                                            <td>{or?.vehicle?.plate}</td>
+                                            <td>{or?.vehicle?.make} {or?.vehicle?.model}</td>
+                                            <td>{or?.vehicle?.vin}</td>
+                                            <Link to={`/ors/${or.id}`}>
+                                                <td><i className="fa-solid fa-xl fa-info mt-2"></i></td></Link>
+                                        </tr>
+                                    )
+                                    )}
+                                </tbody>
+                            </table>
                         </div>
-                        <div className="col">
-                            <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/ors">
-                                <h5> PENDING OR's </h5>
-                            </Link>
-                        </div>
-                        <div className="col">
-                            <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/vehicles">
-                                <h5> VEHICLES DATA </h5>
-                            </Link>
-                        </div>
-                        <div className="col">
-                            <Link className="btn btn-warning mt-3" style={{ width: 200, height: 45 }} to="/carowners">
-                                <h5> CLIENTS DATA </h5>
-                            </Link>
-                        </div>
-                        <div className="mt-5">
-                            <img src={carImage} style={{ height: 270, width: 300 }} className="card-img-top" alt=" " />
-                        </div>
-                        <DropDownMenu />
                     </div>
                 </div>
             )}
-        </div>
+        </div >
     )
 }
 

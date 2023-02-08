@@ -11,6 +11,7 @@ import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
 import CreateCarOwnerComp from "../../components/CreateCarOwnerComp/CreateCarOwnerComp"
 import SearchClientComp from "../../components/SearchClientComp/SearchClientComp"
 import BackButton from "../../components/BackButton/BackButton"
+import Navbar from "../../components/Misc/Navbar";
 
 
 const schema = yup.object({
@@ -122,6 +123,7 @@ const Vehicles = () => {
 
     return (
         <div className="Vehicle text-start">
+            <Navbar />
             <h1 className="mt-4 mb-4" id="clientTitle">ADD VEHICLE</h1>
             {carOwner ? (
                 <CreateCarOwnerComp

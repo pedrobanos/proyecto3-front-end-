@@ -23,3 +23,6 @@ select.form-control:focus {
 .buttonEditOr{
   transform: translate(115px, 0px);
 }
+.container{
+  width: 100vw;
+}

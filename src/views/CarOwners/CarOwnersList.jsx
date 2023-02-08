@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import BackButton from "../../components/BackButton/BackButton"
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu"
+import Navbar from "../../components/Misc/Navbar"
 import SearchBar from "../../components/SearchBar"
 import Spinner from "../../components/Spinner/Spinner"
 import { useAuthContext } from "../../contexts/AuthContext"
@@ -44,75 +45,74 @@ const CarOwnersList = () => {
         }
     }
     return (
-        <div>
+        <div className="vehicleList">
+            <Navbar />
             <h1 className="mt-4 mb-3 text-center clientTitle">CLIENT DATA</h1>
             {!carOwners ? (
                 <Spinner />
             ) : (
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-offset-1 col-md-10">
-                            <div className="panel">
-                                <SearchBar
-                                    setSearch={searchItems}>
-                                </SearchBar>
-                                <div className="panel-body table-responsive" >
+                        <div className="panel">
+                            <SearchBar
+                                setSearch={searchItems}>
+                            </SearchBar>
+                            <div className="panel-body table-responsive" >
 
-                                    <table className="table" >
-                                        <thead >
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>NIF/NIE</th>
-                                                <th>Tel</th>
-                                                <th>Address</th>
-                                                <th>City/State</th>
-                                                <th>Zipcode</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {search ? (
-                                                filteredResults.map((carOwner) => (
-                                                    <tr key={carOwner.id}>
-                                                        <td>{carOwner.name}</td>
-                                                        <td>{carOwner.nifOrNie}</td>
-                                                        <td>{carOwner.phoneNumber}</td>
-                                                        <td>{carOwner.address.street}</td>
-                                                        <td>{carOwner.address.city}</td>
-                                                        <td>{carOwner.address.zipCode}</td>
-                                                        <td>
-                                                            <ul className="action-list justify-content-center">
-                                                                <Link to={`/carowners/${carOwner.id}`}><i className="text-center fa-solid fa-info"></i></Link>
-                                                                <Link to={`/carowners/${carOwner.id}/edit`}><i className="fa fa-edit"></i></Link>
-                                                                <button className="btn "
-                                                                    onClick={() => handleDelete(carOwner.id)}>
-                                                                    <i className="fa-solid fa-trash"
-                                                                        style={{ color: "red", border: 'none' }}></i>
-                                                                </button>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                carOwners.map(carOwner => (
-                                                    <tr key={carOwner.id}>
-                                                        <td>{carOwner.name}</td>
-                                                        <td>{carOwner.nifOrNie}</td>
-                                                        <td>{carOwner.phoneNumber}</td>
-                                                        <td>{carOwner.address.street}</td>
-                                                        <td>{carOwner.address.city}</td>
-                                                        <td>{carOwner.address.zipCode}</td>
-                                                        <Link to={`/carowners/${carOwner.id}`}><i className="fa fa-edit"></i></Link>
-                                                        <button className="btn  "
-                                                            onClick={() => handleDelete(carOwner.id)}>
-                                                            <i className="fa-solid fa-trash"
-                                                                style={{ color: "red", border: 'none' }}></i>
-                                                        </button>
-                                                    </tr>
-                                                )
-                                                ))}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <table className="table" >
+                                    <thead >
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>NIF/NIE</th>
+                                            <th>Tel</th>
+                                            <th>Address</th>
+                                            <th>City/State</th>
+                                            <th>Zipcode</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {search ? (
+                                            filteredResults.map((carOwner) => (
+                                                <tr key={carOwner.id}>
+                                                    <td>{carOwner.name}</td>
+                                                    <td>{carOwner.nifOrNie}</td>
+                                                    <td>{carOwner.phoneNumber}</td>
+                                                    <td>{carOwner.address.street}</td>
+                                                    <td>{carOwner.address.city}</td>
+                                                    <td>{carOwner.address.zipCode}</td>
+                                                    <td>
+                                                        <ul className="action-list justify-content-center">
+                                                            <Link to={`/carowners/${carOwner.id}`}><i className="text-center fa-solid fa-info"></i></Link>
+                                                            <Link to={`/carowners/${carOwner.id}/edit`}><i className="fa fa-edit"></i></Link>
+                                                            <button className="btn "
+                                                                onClick={() => handleDelete(carOwner.id)}>
+                                                                <i className="fa-solid fa-trash"
+                                                                    style={{ color: "red", border: 'none' }}></i>
+                                                            </button>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        ) : (
+                                            carOwners.map(carOwner => (
+                                                <tr key={carOwner.id}>
+                                                    <td>{carOwner.name}</td>
+                                                    <td>{carOwner.nifOrNie}</td>
+                                                    <td>{carOwner.phoneNumber}</td>
+                                                    <td>{carOwner.address.street}</td>
+                                                    <td>{carOwner.address.city}</td>
+                                                    <td>{carOwner.address.zipCode}</td>
+                                                    <Link to={`/carowners/${carOwner.id}`}><i className="fa fa-edit"></i></Link>
+                                                    <button className="btn  "
+                                                        onClick={() => handleDelete(carOwner.id)}>
+                                                        <i className="fa-solid fa-trash"
+                                                            style={{ color: "red", border: 'none' }}></i>
+                                                    </button>
+                                                </tr>
+                                            )
+                                            ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -10,6 +10,7 @@ import { register as registerNewOwner } from '../../services/CarOwnserService'
 import DropDownMenu from "../../components/DropDownMenu/DropDownMenu";
 import BackButton from "../../components/BackButton/BackButton";
 import './CarOwnersList.css'
+import Navbar from "../../components/Misc/Navbar";
 
 
 
@@ -55,6 +56,8 @@ const CarOwners = () => {
 
     return (
         <div className="container">
+            <Navbar /> 
+
             <h1 className="mt-4 mb-3 clientTitle">NEW CLIENT </h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputComponent

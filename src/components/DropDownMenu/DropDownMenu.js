@@ -15,9 +15,11 @@ const DropDownMenu = () => {
   return (
     <div className="dropdownContainer">
       <Dropdown isOpen={dropdown} toggle={openCloseDrop} direction="left">
+        
         <DropdownToggle className="menuDropdown">
           <i style={{color: "black"}} className="fa-solid fa-bars"></i>
         </DropdownToggle>
+
         <DropdownMenu className="listOfItems">
           <div className="d-flex">
             <DropdownItem onClick={() => navigate('/home')} className="itemDropdownItem1"><i className="fa-solid fa-house"></i></DropdownItem>

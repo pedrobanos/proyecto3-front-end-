@@ -109,7 +109,6 @@ const Login = () => {
                         <div className='text-center'>
                             <button className="btn btn-warning"> Did you forget your password?</button>
                         </div>
-
                     <div className='CreateAcount'>
                         <h6 className='mb-4 AccountText'>Do you not have an account?</h6>
                         <Link className='AccountText' to="/register"><p>Sign up</p></Link>

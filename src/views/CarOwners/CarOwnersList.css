@@ -1,7 +1,17 @@
-.clientTitle{
-    padding-bottom: 10px;
-    font-size: 40px;
-    font-weight: bold;
-    color: #ffc107;
-    text-shadow: 0 0 2px black;
-  }
+.clientTitle {
+  padding-bottom: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffc107;
+  text-shadow: 0 0 2px black;
+}
+
+.table{
+  width: 100%;
+}
+.vehicleList{
+  width: 100vw;
+}
+.container{
+  width: 100vw;
+}
