@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { login as loginRequest } from '../../services/AuthService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import GARAGEmanagement from '../../assets/GARAGEmanagement.png'
+import GARAGEmanagement from '../../assets/GARAGEmanagement2.png'
 import InputLogin from '../../components/InputLogin/InputLogin';
 import './Login.css'
 
@@ -60,61 +60,45 @@ const Login = () => {
 
 
     return (
-            <div className="formContainer">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='brand'>
-                        <img src={GARAGEmanagement}></img>
-                    </div>
-                    <div className='cifImputGroup'>
-                        <InputLogin className="input-group"
-                            id="cif1"
-                            register={register}
-                            error={error || errors.cif?.message}
-                            placeholder="Enter your cif"
-                            type="cif"
-                            name="cif"
-                            icon={"fa-solid fa-user"}
-                        />
-                    </div>
-                    <div className='passwordImputGroup pb-4'>
-                        <InputLogin className="input-group"
-                            id="password"
-                            register={register}
-                            onToggle={onToggle}
-                            error={error || errors.password?.message}
-                            placeholder="Password"
-                            type={toggle ? 'text' : 'password'}
-                            name="password"
-                            icon={"fa-solid fa-lock"}
-                            eye={"far fa-eye"}
-                        />
-                    </div>
-                    <div className=" form-actions form-check mb-4">
-                        <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="rememberPassword"
-                            name="checkbox"
-                            checked={rememberPassword}
-                            onChange={handleRememberMeChange}
-                        />
-                        <label className="form-check-label fs-6" htmlFor="rememberPassword">
-                            Remember me.
-                        </label>
-                    </div>
-                        <div className='text-center'>
-                            <button className={`btn btn-${isSubmitting ? 'secondary' : 'warning'} rounded-pill mt-4 mb-4`}
-                            onChange={handleRememberMeChange}>{isSubmitting ? 'Please wait...' : 'Login'}</button>
-                        </div>
-                        <div className='text-center'>
-                            <button className="btn btn-warning"> Did you forget your password?</button>
-                        </div>
-                    <div className='CreateAcount'>
-                        <h6 className='mb-4 AccountText'>Do you not have an account?</h6>
-                        <Link className='AccountText' to="/register"><p>Sign up</p></Link>
-                    </div>
-                </form>
+        <div className="formContainer">
+            <div className='logo-login'>
+                <img src={GARAGEmanagement}></img>
             </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='cifImputGroup'>
+                    <InputLogin className="input-group"
+                        id="cif1"
+                        register={register}
+                        error={error || errors.cif?.message}
+                        placeholder="Enter your cif"
+                        type="cif"
+                        name="cif"
+                        icon={"fa-solid fa-user"}
+                    />
+                </div>
+                <div className='passwordImputGroup pb-2'>
+                    <InputLogin className="input-group"
+                        id="password"
+                        register={register}
+                        onToggle={onToggle}
+                        error={error || errors.password?.message}
+                        placeholder="Password"
+                        type={toggle ? 'text' : 'password'}
+                        name="password"
+                        icon={"fa-solid fa-lock"}
+                        eye={"far fa-eye"}
+                    />
+                    <button className="btn-forget"> Did you forget your password?</button>
+                </div>
+                <button className={`btn btn-${isSubmitting ? 'secondary' : 'signIn'}`}
+                    onChange={handleRememberMeChange}>{isSubmitting ? 'Please wait...' : 'Sign in'}</button>
+                <hr className="my-line"></hr>
+                <div className='CreateAcount'>
+                    <h6 className='mb-4 AccountText'>Do you not have an account?</h6>
+                    <Link className='AccountText' to="/register"><p>Sign up</p></Link>
+                </div>
+            </form>
+        </div>
     )
 }
 
